@@ -1,0 +1,257 @@
+@import 'fonts.css';
+
+/* Modular Styles */
+
+:root {
+	--primary: #1db2ff;
+	--secondary: #333;
+	--neutral: white;
+}
+
+.button {
+	border-radius: 48px;
+	cursor: pointer;
+	padding: 6px 12px;
+}
+
+.button .nav-link {
+	padding: 0;
+}
+
+.button.outlined {
+	border: 2px solid var(--secondary);	
+}
+
+.button.filled {
+	background-color: var(--secondary);
+	padding: 8px 14px
+}
+
+.button.filled .nav-link {
+	color: var(--neutral);
+}
+
+.action.button {
+	background-color: var(--primary);
+	color: var(--secondary);
+}
+
+/* Body */
+
+html {
+	min-height: 100vh;
+}
+
+body {
+	background-color: #e9e9e9;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.container {
+	max-width: 1080px;
+}
+
+.page-content {
+	margin-top: 5em;
+}
+
+.shady {
+	background-color: var(--neutral) !important;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.15);
+}
+
+.open {
+	background-color: var(--neutral) !important;
+}
+	
+/* NavBar */
+
+nav {
+	background-color: var(--neutral);
+	font-size: 12px;
+}
+
+.navbar-brand {
+	align-items: center;
+	display: flex;	
+}
+
+.navbar-dark .navbar-brand, .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+	color: var(--secondary) !important;
+}
+
+.brand-logo {
+	background: url("../assets/icon-2x.png") no-repeat center;
+	background-size: contain;
+	height: 32px;
+	margin-right: 8px;
+	width: 32px;
+}
+
+button.navbar-toggler {
+	cursor: pointer;
+	padding: 8px;
+}
+
+.menu-button {
+	background: url("../assets/icons/menu-button-black.png") no-repeat center;
+	background-size: contain;	
+	height: 24px;
+	width: 24px;
+}
+
+.navbar-toggler {
+	border: none;
+}
+
+.navbar-collapse .navbar-nav {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.nav-items {
+	align-items: center;
+	display: flex;
+}
+
+.button:hover {
+	opacity: .8;
+}
+
+.nav-items .nav-item:not(:first-child) {
+	margin-left: 1em;
+}
+
+.navbar-nav form, .navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-nav .nav-link:hover, .button .nav-link, .button.outlined .nav-link:hover {
+	color: var(--secondary) !important;
+}
+
+.button.filled .nav-link, .button.filled .nav-link:hover, .button.filled .nav-link:focus {
+	color: var(--neutral) !important;
+}
+
+.navbar-collapse .navbar-nav input {
+	background-color: rgba(0,0,0,0);
+	border-radius: 6px;
+	border-width: 2px;
+	color: var(--secondary);
+	max-width: 14rem;
+}
+
+.navbar-collapse .navbar-nav input::placeholder {
+	color: var(--secondary);
+	opacity: .8;
+}
+
+.navbar-collapse .navbar-nav input:focus {
+	background-color: rgba(0,0,0,0.2);
+}
+
+.search-button {
+	background-color: transparent !important;
+	border: none;
+	cursor: pointer;
+	margin-left: -3em;
+}
+
+.search-button div {
+	background: url(../assets/icons/magnifying-glass.png) no-repeat center;
+	background-size: contain;
+	height: 16px;
+	width: 16px;
+}
+
+.search-button:focus {
+	box-shadow: none !important;
+	outline: none;
+}
+
+.navbar-collapse .navbar-nav input:focus {
+    background-color: rgba(0,0,0,0.1);
+}
+
+/* Forms */
+
+.form-line {
+	display: flex;
+	margin-bottom: .5em;
+	justify-content: space-between;
+}
+
+.form-line label {
+	height: 1.5em;
+	margin: auto;
+	opacity: .7;
+	width: 1.5em;	
+}
+
+.form-line input {
+	border: 1px solid #afafaf;
+	border-radius: .5em;
+	color: #4f4f4f;
+	padding: .4em;
+	width: 100%;
+}
+
+.form-line .input-group input {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.form-line .input-group button {
+	border: 1px solid #afafaf;
+	border-bottom-right-radius: .5em;
+	border-top-right-radius: .5em;
+}
+
+.form-line :last-child { /* input 1,2  & .input-group */
+	margin-left: 1em;
+}
+
+label[for="username"] {
+	background: url("../assets/icons/user.png") no-repeat center;
+	background-size: contain;
+}
+
+label[for="email"] {
+	background: url("../assets/icons/mail.png") no-repeat center;
+	background-size: contain;
+}
+
+label[for="password"] {
+	background: url("../assets/icons/lock.png") no-repeat center;
+	background-size: contain;
+}
+
+@media (max-width: 767px) {	
+	nav {
+		font-size: 14px;
+	}
+	
+	.navbar-collapse.show {
+		min-height: 100vh;
+	}
+	
+	.navbar-collapse .navbar-nav {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+	}
+	
+	.nav-items {
+		flex-direction: column;
+	}
+	
+	.button {
+		padding: 8px 32px;
+	}
+	
+	.button.filled {
+		padding: 10px 40px;
+	}
+	
+	.navbar-collapse .nav-items .nav-item, .navbar-collapse form {
+		margin: 0 auto 1em auto;
+	}
+}

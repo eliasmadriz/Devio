@@ -1,0 +1,94 @@
+:root {
+	--secondary: white;
+	--neutral: #016CA1;
+}
+
+body {
+	background: linear-gradient(to bottom right, rgb(0, 98, 156), rgb(22, 222, 222));
+}
+
+/* NavBar */
+nav {
+	transition: .35s background-color;
+}
+
+.brand-logo {
+	background: url("../assets/devio-mono.png") no-repeat center;
+	background-size: contain;
+}
+
+.navbar-dark .navbar-brand {
+	color: #fff;
+}
+
+nav {
+	background-color: transparent;
+}
+
+.menu-button {
+	background: url("../assets/icons/menu-button-white.png") no-repeat center;
+	background-size: contain;	
+}
+
+.search-button div {
+	background: url("../assets/icons/magnifying-glass-white.png") no-repeat center;
+	background-size: contain;
+}
+
+/* Content */
+.welcome-text {
+	color: var(--secondary);	
+}
+
+.illustration {
+	background: url("../assets/illustration.svg") no-repeat center;
+	background-size: contain;
+	height: 250px;
+}
+
+/* Signup Card */
+
+.signup-card {
+	background-color: var(--secondary);
+	border-radius: 1.5em;
+	box-shadow: 0 0 1em rgba(0,0,0,.15);
+	display: flex;
+	flex-direction: column;
+	padding: 1.4em 2em;
+	text-align: right;
+}
+
+.signup-card .form-line:last-child {
+  align-self: flex-end;
+}
+
+.show-password {
+	background-color: transparent;
+	border: 2px solid var(--accent) !important;
+	cursor: pointer;
+	padding: 0px 8px;
+}
+
+.icon.eye {
+	background: url(../assets/icons/eye.png) no-repeat center;
+	background-size: contain;
+	height: 32px;
+	margin: 0 auto;	
+	width: 32px;
+}
+
+
+@media (max-width: 767px) {	
+	.welcome-text {
+		text-align: center;
+	}
+	
+	.signup-card {
+		margin: 2em 0;
+		text-align: center;
+	}
+	
+	.signup-card .form-line:last-child {
+    align-self: center;
+	}
+}

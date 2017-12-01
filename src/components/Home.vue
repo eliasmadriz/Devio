@@ -10,43 +10,9 @@
 				</div>
 			</div>
 
-			<!-- Signup card -->
+			<!-- Auth card -->
 			<div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-1 col-lg-5 offset-lg-2">
-				<div class="signup-card">
-					<div>
-						<h3 class="mb-0">Regístrate</h3>
-						<p>y únete a la comunidad</p>
-					</div>
-
-					<div class="form-line">
-							<label for="username"></label>
-							<input type="text" id="username" autocomplete="off" placeholder="Nombre de Usuario">
-					</div>
-
-					<div class="form-line">
-						<label for="email"></label>
-						<input type="email" id="email" autocomplete="off" placeholder="Correo electrónico">
-					</div>
-
-					<div class="form-line">
-						<label for="password"></label>
-
-						<div class="input-group line" data-toggle="buttons">
-							<input type="password" placeholder="Contraseña" id="passwordField">
-							<span class="input-group-btn" data-toggle="tooltip" data-original-title="Mostrar contraseña" id="toggleShowPassword">
-								<button class="btn show-password" type="button" data-toggle="button" id="passwordButton">
-									<div class="icon eye"></div>
-								</button>
-							</span>
-						</div>
-					</div>
-					
-					
-				 	<div class="form-line">
-				   	<div class="button filled action">Registrarse</div>
-				 	</div>
-					
-				</div>
+				<auth-card></auth-card>
 			</div>
 		</div>
 	</div>
@@ -59,6 +25,13 @@ export default {
       
     }
   },
+	beforeMount() {
+		document.querySelector('body').classList.add('home')
+//		document.querySelector('nav').classList.remove('shady')
+	},
+	beforeDestroy() {
+		document.querySelector('body').classList.remove('home')
+	},
 	mounted() {	
 		var html = document.documentElement;
 		var navbar = document.getElementById("navbar");
@@ -82,7 +55,7 @@ export default {
 			}			
 		})
 		
-		// This one should not be includen for mobile devices
+		// This one should not be included for mobile devices
 		// remove the background of the navbar if the menu was open when the user resizes the page to a size bigger than 767px (sm breakpoint)
 		window.addEventListener('optimizedResize', function () {
 			if (window.innerWidth > 767) {
@@ -94,7 +67,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scoped>
 	@import '../styles/home.css';
 </style>

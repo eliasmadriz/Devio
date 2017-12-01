@@ -1,94 +1,87 @@
 :root {
-	--secondary: white;
-	--neutral: #016CA1;
+	
 }
 
-body {
+body.home {
 	background: linear-gradient(to bottom right, rgb(0, 98, 156), rgb(22, 222, 222));
 }
 
+.home .navbar-dark .navbar-nav a.button.filled {
+	color: var(--secondary);
+}
+
+.home .navbar-dark .navbar-nav a {
+	color: var(--neutral);
+}
+
+.home .navbar-dark .navbar-nav a.button.outlined {
+	border: 2px solid var(--neutral);
+}
+
+.home .navbar-dark .navbar-nav .button.filled {
+	background-color: white;
+}
+
 /* NavBar */
-nav {
+.home nav {
+	background-color: #016CA1;
 	transition: .35s background-color;
 }
 
-.brand-logo {
+.home .navbar.open {
+	background-color: #016CA1;
+}
+
+.home .navbar-collapse .navbar-nav input::placeholder {
+	color: white;
+}
+
+.home .brand-logo {
 	background: url("../assets/devio-mono.png") no-repeat center;
 	background-size: contain;
 }
 
-.navbar-dark .navbar-brand {
-	color: #fff;
+.home .navbar-dark .navbar-brand {
+	color: white;
 }
 
-nav {
+.home nav {
 	background-color: transparent;
 }
 
-.menu-button {
+.home nav.shady {
+	background-color: #016CA1;
+}
+
+.home .menu-button {
 	background: url("../assets/icons/menu-button-white.png") no-repeat center;
 	background-size: contain;	
 }
 
-.search-button div {
+.home .search-button div {
 	background: url("../assets/icons/magnifying-glass-white.png") no-repeat center;
 	background-size: contain;
 }
 
 /* Content */
-.welcome-text {
-	color: var(--secondary);	
+.home .welcome-text {
+	color: var(--neutral);	
 }
 
-.illustration {
+.home .illustration {
 	background: url("../assets/illustration.svg") no-repeat center;
 	background-size: contain;
 	height: 250px;
 }
 
-/* Signup Card */
-
-.signup-card {
-	background-color: var(--secondary);
-	border-radius: 1.5em;
-	box-shadow: 0 0 1em rgba(0,0,0,.15);
-	display: flex;
-	flex-direction: column;
-	padding: 1.4em 2em;
-	text-align: right;
-}
-
-.signup-card .form-line:last-child {
-  align-self: flex-end;
-}
-
-.show-password {
-	background-color: transparent;
-	border: 2px solid var(--accent) !important;
-	cursor: pointer;
-	padding: 0px 8px;
-}
-
-.icon.eye {
-	background: url(../assets/icons/eye.png) no-repeat center;
-	background-size: contain;
-	height: 32px;
-	margin: 0 auto;	
-	width: 32px;
-}
-
+/* Mobile styles */
 
 @media (max-width: 767px) {	
 	.welcome-text {
 		text-align: center;
 	}
 	
-	.signup-card {
+	.home .auth.card {
 		margin: 2em 0;
-		text-align: center;
-	}
-	
-	.signup-card .form-line:last-child {
-    align-self: center;
 	}
 }

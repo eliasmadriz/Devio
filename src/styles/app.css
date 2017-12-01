@@ -6,6 +6,8 @@
 	--primary: #1db2ff;
 	--secondary: #333;
 	--neutral: white;
+	--navbar-background: var(--neutral);
+	--dark: #333;
 }
 
 .button {
@@ -14,12 +16,12 @@
 	padding: 6px 12px;
 }
 
-.button .nav-link {
-	padding: 0;
-}
-
 .button.outlined {
 	border: 2px solid var(--secondary);	
+}
+
+.button.outlined.dark {
+	border-color: var(--dark);
 }
 
 .button.filled {
@@ -27,13 +29,26 @@
 	padding: 8px 14px
 }
 
-.button.filled .nav-link {
-	color: var(--neutral);
+a.button.filled {
+	color: var(--navbar-background);
+}
+
+a.button.outlined {
+	color: var(--secondary);
 }
 
 .action.button {
 	background-color: var(--primary);
-	color: var(--secondary);
+	color: var(--neutral);
+}
+
+.link {
+	color: var(--primary);
+	cursor: pointer;
+}
+
+.link:hover {
+	opacity: .8;
 }
 
 /* Body */
@@ -56,18 +71,18 @@ body {
 }
 
 .shady {
-	background-color: var(--neutral) !important;
+	background-color: var(--navbar-background);
 	box-shadow: 0px 2px 4px rgba(0,0,0,0.15);
 }
 
 .open {
-	background-color: var(--neutral) !important;
+	background-color: var(--navbar-background);
 }
 	
 /* NavBar */
 
 nav {
-	background-color: var(--neutral);
+	background-color: var(--navbar-background);
 	font-size: 12px;
 }
 
@@ -76,8 +91,14 @@ nav {
 	display: flex;	
 }
 
+.navbar a {
+	color: var(--secondary);
+	margin-left: 1em;
+	text-decoration: none;
+}
+
 .navbar-dark .navbar-brand, .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
-	color: var(--secondary) !important;
+	color: var(--secondary);
 }
 
 .brand-logo {
@@ -119,16 +140,12 @@ button.navbar-toggler {
 	opacity: .8;
 }
 
-.nav-items .nav-item:not(:first-child) {
+.nav-items > .nav-item:not(:first-child) {
 	margin-left: 1em;
 }
 
 .navbar-nav form, .navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-nav .nav-link:hover, .button .nav-link, .button.outlined .nav-link:hover {
-	color: var(--secondary) !important;
-}
-
-.button.filled .nav-link, .button.filled .nav-link:hover, .button.filled .nav-link:focus {
-	color: var(--neutral) !important;
+	color: var(--secondary);
 }
 
 .navbar-collapse .navbar-nav input {
@@ -148,11 +165,16 @@ button.navbar-toggler {
 	background-color: rgba(0,0,0,0.2);
 }
 
-.search-button {
-	background-color: transparent !important;
+a.search-button {
+	background-color: transparent;
 	border: none;
 	cursor: pointer;
 	margin-left: -3em;
+}
+
+a.search-button:hover, a.search-button:focus, a.search-button:active  {
+	background-color: transparent !important;
+	box-shadow: none !important;
 }
 
 .search-button div {
@@ -163,12 +185,21 @@ button.navbar-toggler {
 }
 
 .search-button:focus {
-	box-shadow: none !important;
 	outline: none;
 }
 
 .navbar-collapse .navbar-nav input:focus {
     background-color: rgba(0,0,0,0.1);
+}
+
+#profileLinks button {
+	background: url(../assets/1x.png) no-repeat center;
+	background-size: contain;
+/*	background-color: red;*/
+}
+
+.navbar .dropdown-link {
+	color: var(--secondary);
 }
 
 /* Forms */
@@ -182,8 +213,9 @@ button.navbar-toggler {
 .form-line label {
 	height: 1.5em;
 	margin: auto;
+	margin-right: 1em;
 	opacity: .7;
-	width: 1.5em;	
+	width: 1.5em;
 }
 
 .form-line input {
@@ -205,10 +237,6 @@ button.navbar-toggler {
 	border-top-right-radius: .5em;
 }
 
-.form-line :last-child { /* input 1,2  & .input-group */
-	margin-left: 1em;
-}
-
 label[for="username"] {
 	background: url("../assets/icons/user.png") no-repeat center;
 	background-size: contain;
@@ -223,6 +251,61 @@ label[for="password"] {
 	background: url("../assets/icons/lock.png") no-repeat center;
 	background-size: contain;
 }
+
+/* Profile links dropdown */
+/* Dropdown Button */
+#nav-avatar {	 
+	background-color: var(--neutral);
+	border: 2px solid var(--secondary);
+	border-radius: 4em;
+	cursor: pointer;
+	height: 40px;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	background-color: #f9f9f9;
+	border: 1px solid lightgray;
+	border-radius: 6px;
+	box-shadow: 0 0 8px rgba(0,0,0,.2);
+	display: none;	
+	left: auto;	
+	margin-top: 2px;
+	min-width: 120px;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	color: black;
+	padding-bottom: 8px;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: #f1f1f1
+}
+/*
+
+ Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) 
+*/
+.show {display:block;}
 
 @media (max-width: 767px) {	
 	nav {
@@ -243,6 +326,10 @@ label[for="password"] {
 		flex-direction: column;
 	}
 	
+	.navbar-nav a {
+		margin-top: 1em;
+	}
+	
 	.button {
 		padding: 8px 32px;
 	}
@@ -253,5 +340,9 @@ label[for="password"] {
 	
 	.navbar-collapse .nav-items .nav-item, .navbar-collapse form {
 		margin: 0 auto 1em auto;
+	}
+	
+	.auth.card .form-line.mt-2 {
+		justify-content: space-around;
 	}
 }

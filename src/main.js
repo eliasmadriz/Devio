@@ -3,11 +3,14 @@ import App from './App'
 import router from './router'
 import {store} from './store.js'
 import BootstrapVue from 'bootstrap-vue'
+import authCard from './components/authCard.vue'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 Vue.use(BootstrapVue)
+
+Vue.component('auth-card', authCard)
 
 Vue.config.productionTip = false
 

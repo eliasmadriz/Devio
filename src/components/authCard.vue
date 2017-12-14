@@ -1,5 +1,4 @@
 <template>
-	<div>
 		<div class="auth card">
 			<transition name="fade" mode="out-in">
 				<!-- Login Content -->
@@ -25,8 +24,8 @@
 						</div>
 					</div>		
 						
-					<div class="form-line mt-2 mb-3">
-						<div class="filled action button">Iniciar Sesión</div>
+					<div class="form-line submit mt-2 mb-3">
+						<router-link class="filled action button" to="/dashboard">Iniciar Sesión</router-link>
 					</div>
 				
 					<h6 class="mb-0">¿No tienes una cuenta aún?</h6>
@@ -53,7 +52,7 @@
 						<label for="password"></label>
 				
 						<div class="input-group line" data-toggle="buttons">
-							<input :type="passwordFieldType" placeholder="Contraseña" id="passwordField">
+							<input :type="passwordFieldType" placeholder="Contraseña" id="password">
 							<span class="input-group-btn" data-toggle="tooltip" data-original-title="Mostrar contraseña" id="toggleShowPassword">
 								<button :class="{show: show}" class="btn show-password" type="button" data-toggle="button" id="passwordButton" @click="changePasswordFieldType">
 								</button>
@@ -61,8 +60,8 @@
 						</div>
 					</div>
 				
-					<div class="form-line mt-2 mb-3">
-						<div class="filled action button">Registrarse</div>
+					<div class="form-line submit mt-2 mb-3">
+						<router-link class="filled action button" to="/profile">Registrarse</router-link>
 					</div>
 				
 					<h6 class="mb-0">¿Ya tienes una cuenta?</h6>
@@ -70,7 +69,6 @@
 				</div>
 			</transition>
 		</div>			
-	</div>
 </template>
 
 <script>
@@ -95,6 +93,4 @@
 	}
 </script>
 
-<style>
-	@import '../styles/authCard.css';
-</style>
+<style scoped src="../styles/authCard.css"></style>

@@ -1,0 +1,68 @@
+.tech-card {
+  border: 1px solid lightgray;
+  border-radius: var(--semi-rounded-corner);
+  display: flex;
+  flex-direction: column;
+  min-width: 10em;
+  padding: 1em .5em;
+  text-align: center;
+  transition: box-shadow .25s;
+}
+
+.tech-card .name {
+  font-weight: bold;
+  margin: .5em 0 .5em 0;
+}
+
+.tech-card .logo {
+  max-width: 4em;
+}
+
+.badge-group.links .link:first-child {
+  margin-left: 0;
+}
+
+.tech-card span {
+  display: block;
+  color: lightslategray;
+  font-size: .8em;
+  margin-bottom: .2em;
+}
+
+/* Apply the hover effect only when the tech cards are clickable */
+/*
+@media (min-width: 768px) {
+  .tech-card:hover {
+    box-shadow: 0px 0px 1em rgba(0,0,0,.25);
+    cursor: pointer;
+  }
+}*/
+
+/* Below there is a media query to convert the vertical card into a horizontal card when the screen is small */
+
+/*
+@media (max-width: 470px) {
+  .tech-card {
+    flex-direction: row;
+    align-items: center;    
+    justify-content: space-around;
+    padding: .5em;
+    min-width: 80%;
+  }
+  
+  .tech-card .tech-logo {
+    display: flex;
+    width: 5em;
+    height: 100%;
+  }
+  
+  .tech-logo .logo {
+    height: 100%;    
+    object-fit: contain;    
+    width: 100%;
+  }
+  
+  .tech-info {
+    height: 100%;
+  }
+}*/

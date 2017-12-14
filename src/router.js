@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
+import Credits from '@/components/Credits'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
 			name: 'SignUp',
 			component: SignUp,
 			props: true
-		}
+		},
+    {
+      path: '/credits',
+      name: 'Credits',
+      component: Credits
+    }
 	]
 });

@@ -1,0 +1,116 @@
+[
+  {
+    id: 'aaa',
+    avatar: '/static/avatar/avatar.svg',
+    username: 'eliasmadriz',
+    publicName: 'Elías Madriz',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem vitae quod ducimus laudantium, natus hic aspernatur pariatur nostrum eius.',
+    favTechs: [
+      'Angular', 'Javascript', 'Vue.js', 'React', 'Node.js'
+    ],
+    posts: {
+      total: 3,
+      list: ['001', '002', '003']
+    },
+    followers: {
+      total: 2,
+      list: ['bbb', 'ccc']
+    },
+    following: {
+      total: 1,
+      list: ['bbb']
+    },
+    points: 50,
+    socialLinks: [
+      {
+        name: 'Twitter', 
+        url: 'http://twitter.com/eliasmadriz'
+      },
+      {
+        name: 'Github', 
+        url: 'http://github.com/eliasmadriz'
+      },
+      {
+        name: 'Stack Overflow',
+        url: 'http://stackoverflow.com/users/4589896'
+      }
+    ],
+    website: ''
+  },
+  {
+    id: 'bbb',
+    avatar: '/static/avatar/avatar.svg',
+    username: 'sarahdrasner',
+    publicName: 'Sarah Drasner',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem vitae quod ducimus laudantium, natus hic aspernatur pariatur nostrum eius.',
+    favTechs: [
+      'Javascript', 'Vue.js', 'React'
+    ],
+    posts: {
+      total: 3,
+      list: ['004', '005', '006']
+    },
+    followers: {
+      total: 2,
+      list: ['bbb', 'ccc']
+    },
+    following: {
+      total: 0,
+      list: []
+    },
+    points: 100,
+    socialLinks: [
+      {
+        name: 'Twitter', 
+        url: 'http://twitter.com/sarah_edo'
+      },
+      {
+        name: 'Github', 
+        url: 'http://github.com/sarahdrasner'
+      },
+      {
+        name: 'Stack Overflow',
+        url: 'http://stackoverflow.com/users/321'
+      }
+    ],
+    website: 'http://sarahdrasnerdesign.com'
+  },
+  {
+    id: 'ccc',
+    avatar: '/static/avatar/avatar2.svg',
+    username: 'johndoe',
+    publicName: 'John Doe',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem vitae quod ducimus laudantium, natus hic aspernatur pariatur nostrum eius.',
+    favTechs: [
+      'Javascript'
+    ],
+    posts: {
+      total: 1,
+      list: ['008']
+    },
+    followers: {
+      total: 0,
+      list: []
+    },
+    following: {
+      total: 2,
+      list: ['aaa', 'bbb']
+    },
+    points: 0,
+    socialLinks: [
+      {
+        name: 'Twitter', 
+        url: 'http://twitter.com/johndoe'
+      },
+      {
+        name: 'Github', 
+        url: 'http://github.com/johndoe'
+      },
+      {
+        name: 'Stack Overflow',
+        url: 'http://stackoverflow.com/users/123'
+      }
+    ],
+    website: 'http://johndoe.com'
+  }
+]

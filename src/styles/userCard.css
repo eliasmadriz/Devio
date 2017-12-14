@@ -1,0 +1,129 @@
+.user-card {
+  align-items: flex-start;
+  border: 1px solid var(--border-color);
+  border-radius: var(--semi-rounded-corner);
+  display: flex;
+  flex-direction: column;    
+  max-width: 360px;
+  padding: .5rem;
+  text-align: left;  
+}
+
+.user-card:not(:last-child) {
+  margin-right: 1em;
+}
+
+.first-row {  
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.user {
+  display: flex;
+}
+
+.avatar {
+  height: 4em;
+  margin-right: .75em;
+  margin-bottom: .5em;
+  width: 4rem;
+}
+
+.names {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.public-name {
+  margin-bottom: 0;  
+}
+
+.username {  
+  color: var(--small-text-color);
+  font-size: 14px;
+  margin: 0;
+}
+
+.bio {
+  margin-bottom: .5em;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  width: 100%;
+}
+
+.stats .label {
+  color: var(--small-text-color);
+}
+
+.stats .number {
+  font-weight: bold;
+}
+
+/* Badge Group */
+.badge-group {
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: var(--semi-rounded-corner);
+  display: flex;    
+}
+
+.badge-group.techs {
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.badge-group .badge {
+  border-radius: 0;
+  display: block;
+  margin: .5em;
+  padding: 0;   
+}
+
+.badge-group .badge:not(:last-child) {
+  margin-right: 0; 
+}
+
+.badge-group img {
+  height: 1.5rem;
+}
+
+.last-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.website {
+  align-items: center;
+  color: var(--secondary);
+  display: flex;
+}
+
+.website img {
+  height: 1em;
+  margin-left: .5em;
+}
+
+@media (max-width: 767px) {  
+  .first-row {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 767px) {
+  .user-card {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  
+  .author-info {
+    flex-direction: column;
+  }
+}

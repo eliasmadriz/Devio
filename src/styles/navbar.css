@@ -1,0 +1,222 @@
+/* NavBar */
+
+nav {
+	background-color: var(--navbar-background);
+	font-size: 12px;
+	transition: .35s background-color;
+}
+
+nav.shady {
+	background-color: var(--navbar-background);
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.15);
+}
+
+nav.open {
+	background-color: var(--navbar-background);
+}
+
+.navbar-brand {
+	align-items: center;
+	display: flex;	
+  margin-left: 0 !important;
+}
+
+.navbar .nav-items a {
+  align-items: center;
+	color: var(--secondary);
+  display: flex;
+	text-decoration: none;
+  padding: .2em 0;
+  height: 100%;
+}
+
+.navbar-dark .navbar-brand, .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+	color: var(--secondary);
+}
+
+.brand-logo {
+	background: url("/static/devio-color.png") no-repeat center;
+	background-size: contain;
+	height: 32px;
+	margin-right: 8px;
+	width: 32px;
+}
+
+button.navbar-toggler {
+  border: none;
+	cursor: pointer;
+	padding: 8px;
+}
+
+.menu-button {
+	background: url("/static/icons/menu-button-black.png") no-repeat center;
+	background-size: contain;	
+	height: 24px;
+	width: 24px;
+}
+
+.navbar-nav {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.nav-items {
+	align-items: center; 
+	display: flex;
+  font-weight: bold;
+}
+
+.nav-item:not(:first-child) {
+	margin-left: 1em;
+}
+
+.nav-link, 
+.nav-link.active,
+.nav-link:hover {
+	color: var(--secondary);
+}
+
+/* Searchbox */
+
+.searchbar {
+	background-color: rgba(0,0,0,0);
+	border-radius: 6px;
+	border-width: 2px;
+	color: var(--neutral);
+	max-width: 14rem;
+}
+
+.searchbar::placeholder {
+	color: var(--neutral);
+	opacity: .8;
+}
+
+.searchbar:focus {
+	background-color: rgba(0,0,0,0.1);
+  color: var(--neutral);
+}
+
+.search-button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	margin-left: -3.5em;
+  z-index: 999;
+}
+
+.search-button:hover, .search-button:focus, .search-button:active  {
+	background-color: transparent;
+	box-shadow: none;
+  outline: none;
+}
+
+.search-button div {
+	background: url(/static/icons/magnifying-glass.png) no-repeat center;
+	background-size: contain;
+	height: 16px;
+	width: 16px;
+}
+
+#profileLinks button {
+	background: url(/static/1x.png) no-repeat center;
+	background-size: contain;
+}
+
+/* Profile links dropdown */
+/* Dropdown Button */
+#nav-avatar {
+	border-radius: 4em;
+	height: 40px;
+  padding: 0;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	background-color: #f9f9f9;
+	border: 1px solid lightgray;
+	border-radius: var(--semi-rounded-corner);
+	box-shadow: 0 0 8px rgba(0,0,0,.2);
+	display: none;
+	left: auto;
+	margin-top: 2px;
+	min-width: 120px;
+  overflow: hidden;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown.nav-item .dropdown-content a, 
+.dropdown.nav-item .dropdown-content a:hover,
+.dropdown.nav-item .dropdown-content a.active {
+	color: var(--secondary);
+	padding: 8px 0;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown-content.show {display:block;}
+
+/* Mobile */
+
+@media (max-width: 767px) {	
+	nav {
+		font-size: 14px;
+	}
+	
+	.navbar-collapse.show {
+		min-height: 100vh;
+	}
+	
+	.navbar-nav {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+	}
+  
+  .navbar-nav form {
+    margin: 0 auto 1em auto;    
+    width: 70%;
+  }
+  
+  .navbar-nav input.searchbar {
+    height: 3em;
+    width: 100%;
+    max-width: 100%;
+  }
+	
+	.nav-items {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+	}
+  
+  .nav-item .button {
+    padding: 8px 40px;
+  }
+	
+	.navbar-nav {
+		margin-top: 1em;
+	}
+	
+	.nav-items .nav-item {
+		margin: 0 auto .5em auto;
+	}
+}

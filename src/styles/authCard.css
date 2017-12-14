@@ -3,11 +3,10 @@
 .auth.card {
 	align-items: center;
 	background-color: var(--neutral);
-	border-radius: 1.5em;
+	border-radius: 1.2em;
 	box-shadow: 0 0 1em rgba(0,0,0,.15);
 	display: flex;
 	flex-direction: column;
-	
 	margin: 0 auto;
 	max-width: 600px;
 	padding: 1.4em 2em;
@@ -21,27 +20,85 @@
 	width: 100%;
 }
 
-.auth.card .form-line.mt-2 {
+.form-line {
+	display: flex;
+  justify-content: space-between;
+	margin-bottom: .5em;
+}
+
+.form-line label {
+	height: 1.5em;
+	margin: auto;	
+  margin-right: -1.9em;
+	opacity: .7;
+  position: relative;
+	width: 1.2em;  
+  z-index: 2;
+}
+
+.form-line input {
+	border: 1px solid #afafaf;
+	border-radius: var(--semi-rounded-corner);
+	color: #4f4f4f;
+	padding: .4em;
+	width: 100%;
+}
+
+.form-line .input-group input {
+  border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.form-line .input-group button {
+	border: 1px solid #afafaf;
+	border-bottom-right-radius: var(--semi-rounded-corner);
+	border-top-right-radius: var(--semi-rounded-corner);
+}
+
+label[for="username"] {
+	background: url("/static/icons/user.png") no-repeat center;
+	background-size: contain;
+}
+
+label[for="email"] {
+	background: url("/static/icons/mail.png") no-repeat center;
+	background-size: contain;
+}
+
+label[for="password"] {
+	background: url("/static/icons/lock.png") no-repeat center;
+	background-size: contain;
+}
+
+.auth.card .form-line.submit {
 	justify-content: center;
+}
+
+.auth.card .form-line.submit a {
+		padding: 10px 40px;
 }
 
 .auth.card .input-group input {
 	border-right: none;
 }
 
+.auth.card input {
+  padding-left: 2.5em;
+}
+
 .show-password {
-	background-color: transparent;
-	background: url(../assets/icons/eye.png) no-repeat center;
+	background: url(/static/icons/eye.png) no-repeat center;
+  background-color: transparent;
 	background-size: 28px;
-	border: 2px solid var(--primary) !important;
+	border: 2px solid var(--primary);
 	cursor: pointer;
+  height: 100%;
 	padding: 16px;
-	height: 100%;
 	width: 40px;
 }
 
 .show-password.show {
-	background: url(../assets/icons/eye-white.png) 
+	background: url(/static/icons/eye-white.png) 
 	no-repeat center;		
 	background-color: var(--primary);
 	background-size: 28px;

@@ -1,0 +1,228 @@
+[
+   {
+      "id": "aaa",
+      "avatar": "/static/avatar/man-1.svg",
+      "username": "johndoe",
+      "publicName": "John Doe",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem vitae quod ducimus laudantium, natus hic aspernatur pariatur nostrum eius.",
+      "favTechs": [
+         "Angular",
+         "Javascript",
+         "Vue.js",
+         "React",
+         "Node.js"
+      ],
+      "posts": {
+         "total": 2,
+         "list": [
+            "001",
+            "002"           
+         ]
+      },
+      "followers": {
+         "total": 4,
+         "list": [
+            "bbb",
+            "ccc",
+            "ddd",
+            "eee"
+         ]
+      },
+      "following": {
+         "total": 1,
+         "list": [
+            "bbb"
+         ]
+      },
+      "points": 50,
+      "socialLinks": [
+         {
+            "name": "Twitter",
+            "url": "http://twitter.com/johndoe"
+         },
+         {
+            "name": "Github",
+            "url": "http://github.com/johndoe"
+         },
+         {
+            "name": "Stack Overflow",
+            "url": "http://stackoverflow.com/users/johndoe"
+         }
+      ],
+      "website": "http://johndoe.com"
+   },
+   {
+      "id": "bbb",
+      "avatar": "/static/avatar/girl.svg",
+      "username": "janedoe",
+      "publicName": "Jane Doe",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem vitae quod ducimus laudantium, natus hic aspernatur pariatur nostrum eius.  Quidem vitae quod ducimus laudantium, natus hic aspernatur pariatur nostrum eius.",
+      "favTechs": [
+         "Javascript",
+         "Vue.js",
+         "React"
+      ],
+      "posts": {
+         "total": 2,
+         "list": [
+            "003",
+            "004"
+         ]
+      },
+      "followers": {
+         "total": 2,
+         "list": [
+            "ccc",
+            "ddd"
+         ]
+      },
+      "following": {
+         "total": 0,
+         "list": []
+      },
+      "points": 100,
+      "socialLinks": [
+         {
+            "name": "Twitter",
+            "url": "http://twitter.com/janedoe"
+         },
+         {
+            "name": "Github",
+            "url": "http://github.com/janedoe"
+         },
+         {
+            "name": "Stack Overflow",
+            "url": "http://stackoverflow.com/users/janedoe"
+         }
+      ],
+      "website": "http://janedoe.com"
+   },
+   {
+      "id": "ccc",
+      "avatar": "/static/avatar/man.svg",
+      "username": "jacksmith",
+      "publicName": "Jack Smith",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      "favTechs": [
+         "Javascript"
+      ],
+      "posts": {
+         "total": 1,
+         "list": [
+            "005"
+         ]
+      },
+      "followers": {
+         "total": 0,
+         "list": []
+      },
+      "following": {
+         "total": 2,
+         "list": [
+            "aaa",
+            "bbb"
+         ]
+      },
+      "points": 0,
+      "socialLinks": [
+         {
+            "name": "Twitter",
+            "url": "http://twitter.com/jacksmith"
+         },
+         {
+            "name": "Github",
+            "url": "http://github.com/jacksmith"
+         },
+         {
+            "name": "Stack Overflow",
+            "url": "http://stackoverflow.com/users/jacksmith"
+         }
+      ],
+      "website": "http://jacksmith.com"
+   },
+   {
+      "id": "ddd",
+      "avatar": "/static/avatar/boy.svg",
+      "username": "morty",
+      "publicName": "Morty",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem vitae quod ducimus laudantium, natus hic aspernatur pariatur nostrum eius.  Quidem vitae quod ducimus.",
+      "favTechs": [
+         "Javascript",
+         "Node.js"
+      ],
+      "posts": {
+         "total": 0,
+         "list": []
+      },
+      "followers": {
+         "total": 0,
+         "list": []
+      },
+      "following": {
+         "total": 2,
+         "list": [
+            "aaa",
+            "bbb"
+         ]
+      },
+      "points": 0,
+      "socialLinks": [
+         {
+            "name": "Twitter",
+            "url": "http://twitter.com/morty"
+         },
+         {
+            "name": "Github",
+            "url": "http://github.com/morty"
+         },
+         {
+            "name": "Stack Overflow",
+            "url": "http://stackoverflow.com/users/morty"
+         }
+      ],
+      "website": "http://morty.com"
+   },
+   {
+      "id": "eee",
+      "avatar": "/static/avatar/girl-1.svg",
+      "username": "sarah",
+      "publicName": "Sarah D.",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem vitae quod ducimus laudantium, natus hic aspernatur pariatur nostrum eius.  Quidem vitae quod ducimus. Natus hic aspernatur pariatur nostrum eius.  Quidem vitae quod ducimus.",
+      "favTechs": [
+         "HTML",
+         "Javascript",
+         "React",
+         "Vue.js"
+      ],
+      "posts": {
+         "total": 0,
+         "list": []
+      },
+      "followers": {
+         "total": 0,
+         "list": []
+      },
+      "following": {
+         "total": 1,
+         "list": [
+            "aaa"
+         ]
+      },
+      "points": 0,
+      "socialLinks": [
+         {
+            "name": "Twitter",
+            "url": "http://twitter.com/sarah"
+         },
+         {
+            "name": "Github",
+            "url": "http://github.com/sarah"
+         },
+         {
+            "name": "Stack Overflow",
+            "url": "http://stackoverflow.com/users/sarah"
+         }
+      ],
+      "website": "http://sarah.com"
+   }
+]

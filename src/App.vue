@@ -11,4 +11,14 @@
   </div>
 </template>
 
+<script>
+  export default {
+    watch: {
+      $route () {
+        document.documentElement.scrollTop = 0;
+      }
+    }
+  }
+</script>
+
 <style src="./styles/app.css"></style>

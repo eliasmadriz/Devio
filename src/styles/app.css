@@ -15,6 +15,7 @@
   --border-color: lightgray;
   --small-text-color: lightslategray;
   --semi-rounded-corner: .5rem;
+  --card-shadow: 0px 0px 16px lightgray;
 }
 
 button {
@@ -52,6 +53,7 @@ button {
 .button.filled {
 	background-color: var(--secondary);
   border: 2px solid transparent;	
+  color: var(--neutral);
 }
 
 .button.filled.dark {

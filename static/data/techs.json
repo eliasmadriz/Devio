@@ -1,0 +1,38 @@
+[
+   {
+      "logo": "/static/tech/javascript.png",
+      "name": "Javascript",
+      "totalPosts": 2,
+      "totalDevs": 5
+   },
+   {
+      "logo": "/static/tech/node.png",
+      "name": "Node.js",
+      "totalPosts": 2,
+      "totalDevs": 2
+   },
+   {
+      "logo": "/static/tech/angular.png",
+      "name": "Angular",
+      "totalPosts": 0,
+      "totalDevs": 1
+   },
+   {
+      "logo": "/static/tech/react.png",
+      "name": "React",
+      "totalPosts": 2,
+      "totalDevs": 3
+   },
+   {
+      "logo": "/static/tech/vue.png",
+      "name": "Vue.js",
+      "totalPosts": 1,
+      "totalDevs": 3
+   },
+   {
+      "logo": "/static/tech/html.png",
+      "name": "HTML",
+      "totalPosts": 1,
+      "totalDevs": 1
+   }
+]

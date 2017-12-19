@@ -1,0 +1,39 @@
+/* Posts section */
+
+.post-card {
+  margin-bottom: 1em;
+}
+
+.empty-post-list {
+  color: darkgray;
+  display: flex;
+  flex-direction: column;
+  font-size: 3em;  
+  text-align: center;
+}
+
+.empty-post-list span {
+  font-size: 2em;
+  line-height: 1em;
+}
+
+@media (max-width: 767px) {  
+  .title-and-togglers {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .page-content .section-title {
+    text-align: center;
+  }
+  
+  .filters-and-sorters-buttons {
+    justify-content: space-between;
+    width: 250px;
+  }
+  
+  .user {
+    margin-bottom: 1em;
+  }
+}

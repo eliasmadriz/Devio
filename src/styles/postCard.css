@@ -1,15 +1,12 @@
 .post-card {
-  border: 1px solid var(--border-color);
+  background-color: var(--neutral);
   border-radius: var(--semi-rounded-corner);
+  box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
   font-size: .85em;  
   padding: 0;
   text-align: left;
-}
-
-.post-card:not(:last-child) {
-  margin-right: 1em;
 }
 
 .post-card a {
@@ -209,13 +206,6 @@
 .post-button img {
   height: 1.5em;
   -webkit-transform: translateZ(0);
-}
-
-@media (max-width: 767px) {  
-  .post-card {
-    max-width: 80%;
-    margin: 0 auto;
-  }
 }
 
 @media (max-width: 380px) {

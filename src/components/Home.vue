@@ -43,7 +43,7 @@
         <div class="swiper-section">
           <swiper :options="swiperOptions" ref="mySwiper" class="popular posts">
             <swiper-slide v-for="post in trendingPosts" :key="post.id">
-              <post-card :post="post"></post-card>
+              <post-card :post="post" :showAuthor="true"></post-card>
             </swiper-slide>
             
             <div class="swiper-pagination"   slot="pagination"></div>           
@@ -104,7 +104,7 @@ export default {
       trendingUsers: this.$store.getters.trendingUsers
     }
   },
-	beforeMount() {
+	beforeMount() {    
 		// Makes sure that the body has the class that provides the home screen its own particular styles
     document.querySelector('body').classList.add('home')
 	},

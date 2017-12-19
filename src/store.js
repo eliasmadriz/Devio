@@ -2,49 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Users from '../static/data/users.json'
 import Posts from '../static/data/posts.json'
+import Techs from '../static/data/techs.json'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
 	state: {
-    techs: [
-        {
-          logo: '/static/tech/javascript.png',
-          name: 'Javascript',
-          totalPosts: 2,
-          totalDevs: 5
-        },
-        {
-          logo: '/static/tech/node.png',
-          name: 'Node.js',
-          totalPosts: 2,
-          totalDevs: 2
-        },
-        {
-          logo: '/static/tech/angular.png',
-          name: 'Angular',
-          totalPosts: 0,
-          totalDevs: 1
-        },
-        {
-          logo: '/static/tech/react.png',
-          name: 'React',
-          totalPosts: 2,
-          totalDevs: 3
-        },
-        {
-          logo: '/static/tech/vue.png',
-          name: 'Vue.js',
-          totalPosts: 1,
-          totalDevs: 3
-        },
-        {
-          logo: '/static/tech/html.png',
-          name: 'HTML',
-          totalPosts: 1,
-          totalDevs: 1
-        }
-      ],
+    techs: Techs,
     users: Users,
     posts: Posts,
     social: [
@@ -78,11 +42,25 @@ export const store = new Vuex.Store({
         return userA.points < userB.points
       }).slice(0, 5)
     },
-    getUserInfo (state) {
+    getPost (state) {
+      return function (postId) {
+        return state.posts.find(function (post) {
+          return post.id === postId
+        })
+      }
+    },
+    getUser (state) {
       return function (userId) {
         return state.users.find(function (user) {
           return user.id === userId
         })
+      }
+    },
+    getUserByUsername (state) {
+      return function (username) {
+        return state.users.find(function (user) {
+          return user.username === username
+        }) 
       }
     },
     getTechInfo (state) {

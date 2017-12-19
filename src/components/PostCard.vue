@@ -1,7 +1,7 @@
 <template>
   <div class="post-card">
-    <div class="author-info" v-if="displayAuthorInfo">
-      <a href="" class="user">
+    <div class="author-info" v-if="showAuthor">
+      <router-link :to="'/' + author.username" class="user">
         <img :src="author.avatar" alt="" class="avatar">
         <div class="names">
           <h6 class="public-name">
@@ -11,7 +11,7 @@
             @{{ author.username }}
           </p>
         </div>
-      </a>
+      </router-link>
       <user-action-button :id="author.id"></user-action-button>
     </div>
     
@@ -80,11 +80,10 @@
 
 <script>
   export default {
-    props: ['post'],
+    props: ['post', 'showAuthor'],
     data () {
       return {
-        author: this.$store.getters.getUserInfo(this.post.authorId),
-        displayAuthorInfo: true,
+        author: this.$store.getters.getUser(this.post.authorId),
         userHasVoted: false, // should be a computed property based on the existence of the logged user's id in the list of users who upvoted the post.
         userHasBookmarked: false, // should be a computed property based on the existence of the post's id in the user's bookmarked posts list.
         showMoreOptions: false

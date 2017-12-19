@@ -11,11 +11,11 @@ body.home .landing-section {
 	border: 2px solid var(--neutral);
 }
 
-.home .navbar-nav .button.filled.neutral {
+.home .navbar-nav .button.filled {
 	background-color: white;
 }
 
-.home .navbar-nav .button.filled.neutral {
+.home .navbar-nav .button.filled {
 	color: var(--secondary);
 }
 
@@ -92,12 +92,12 @@ section.secondary {
 }
 
 .home .footer {
-  background-color: var(--strong);
-  color: var(--neutral);
+  background-color: var(--strong) !important;
+  color: var(--neutral) !important;
 }
 
 .home .footer a {
-  color: var(--neutral);
+  color: var(--neutral) !important;
 }
 
 /* Swiper */
@@ -122,6 +122,10 @@ section.secondary {
   min-width: 300px;
 }
 
+.home .post-card:not(:last-child) {
+  margin-right: 1em;
+}
+
 .users .swiper-slide {
   max-width: 360px;
   min-width: 300px;
@@ -129,14 +133,6 @@ section.secondary {
 
 .swiper-scrollbar-drag, .swiper-pagination-bullet-active {
   background-color: var(--primary);
-}
-
-/* Swiper faded borders */
-.swiper-faded-border {
-  background-color: red;
-  top: 0;
-  height: 100%;
-  width: 20%;
 }
 
 /* Add padding to the swiper edges */
@@ -162,6 +158,15 @@ section.secondary {
 	
 	.home .auth.card {
 		margin-bottom: 2em;
+  }
+  
+  .users .user-card {
+    max-width: 90%;
+  }
+    
+  .home .post-card {
+    max-width: 80%;
+    margin: 0 auto;
   }
 }
 

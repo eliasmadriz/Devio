@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
+import Profile from '@/components/Profile'
 import Credits from '@/components/Credits'
 
 Vue.use(Router)
@@ -31,6 +32,12 @@ export default new Router({
       path: '/credits',
       name: 'Credits',
       component: Credits
+    },
+    {
+      path: '/:username',
+      name: 'Profile',
+      component: Profile,
+      props: true
     }
 	]
 });

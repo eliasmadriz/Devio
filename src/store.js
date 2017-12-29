@@ -24,7 +24,8 @@ export const store = new Vuex.Store({
         name: 'Twitter',
         logo: '/static/social/twitter.png'
       }
-    ]
+    ],
+    loggedUserId: 'ccc'
 	},
   getters: {
     popularTechs (state) {
@@ -41,6 +42,15 @@ export const store = new Vuex.Store({
       return state.users.sort(function (userA, userB) {
         return userA.points < userB.points
       }).slice(0, 5)
+    },
+    dashboardPosts (state) {
+      const user = store.getters.getUser(state.loggedUserId)
+      return state.posts.filter(function (post) {
+        if (user.following.list.indexOf(post.authorId) !== -1)
+        return post
+      }).sort(function (postA, postB) {
+        return postA.creationDate < postB.creationDate
+      })
     },
     getPost (state) {
       return function (postId) {

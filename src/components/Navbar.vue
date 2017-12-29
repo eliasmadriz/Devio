@@ -3,7 +3,7 @@
 		<div class="container">
 			<b-navbar-brand to="/"><div class="brand-logo"></div><span>Devio</span></b-navbar-brand>
 			
-			<b-navbar-toggle target="nav_collapse" id="menuButton" v-if="!focusPage"><div class="menu-button"></div></b-navbar-toggle>
+			<b-navbar-toggle target="nav_collapse" id="menuButton" v-if="!focusPage" toggleable="md"><div class="menu-button"></div></b-navbar-toggle>
 			
 			<b-collapse is-nav id="nav_collapse">
 			
@@ -20,19 +20,23 @@
 					</b-nav-form>
 					
 					<!-- Navbar for logged users -->		
-					<div class="nav-items" v-if="userIsLogged">
+					<div class="nav-items" v-if="loggedUserId !== undefined">
 						<router-link to="/" class="nav-item" right>
               <div class="button filled primary">Publicar <img src="/static/icons/megaphone.png" alt="" class="text-icon"></div>
             </router-link>
 									
-						<router-link to="/explore" right class="nav-item">
+              <router-link to="/" right class="nav-item">
+                Inicio
+              </router-link>
+
+            <router-link to="/explore" right class="nav-item">
               Explorar
             </router-link>
 					
 						<div class="dropdown nav-item d-none d-md-block">
-							<img id="nav-avatar" src="/static/avatar/avatar.svg" alt="" class="button outlined">
+							<img id="nav-avatar" :src="this.$store.getters.getUser(loggedUserId).avatar" alt="" class="button outlined">
 							<div id="dropdown-links" class="dropdown-content">
-								<router-link to="/LoggedUserusername" class="dropdown-link" right>Mi perfil</router-link>
+								<router-link :to="'/' + this.$store.getters.getUser(loggedUserId).username" class="dropdown-link" right>Mi perfil</router-link>
 								
 								<router-link to="/LoggedUserId" class="dropdown-link" right>Marcadores</router-link>
 						
@@ -47,7 +51,7 @@
 					</div>
 								
 					<!-- Navbar for unlogged users -->
-					<div class="nav-items" v-if="!focusPage && !userIsLogged">
+					<div class="nav-items" v-if="!focusPage && !loggedUserId">
 						<router-link to="/explore" right class="nav-item">
 				      Explorar
 						</router-link>
@@ -88,12 +92,14 @@
   })();  
 
   export default {
+    data () {
+      return {
+        loggedUserId: this.$store.state.loggedUserId
+      }
+    },
     computed: {
       focusPage () {
         return this.$route.path.indexOf('/login') === 0 || this.$route.path.indexOf('/signup') === 0
-      },
-      userIsLogged () {
-        return 0
       },
       currentPageIsLandingPage () {
         return this.$route.path.indexOf('/') === 0
@@ -123,14 +129,6 @@
           }			
         })
       }
-
-      // Removes the background of the navbar if the menu was open when the user resizes the page to a size bigger than 767px (sm breakpoint). This one should not be included for mobile devices
-      window.addEventListener('optimizedResize', function () {
-        if (window.innerWidth > 767) {
-          if (navbar.classList.contains('open'))
-            navbar.classList.remove('open')
-        }
-      })
       
       // Profile links dropdown
       var drop = document.getElementById("nav-avatar");

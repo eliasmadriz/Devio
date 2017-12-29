@@ -10,10 +10,6 @@
   text-align: left;  
 }
 
-.user-card:not(:last-child) {
-  margin-right: 1em;
-}
-
 .first-row {  
   display: flex;
   justify-content: space-between;
@@ -56,6 +52,7 @@
 .stats {
   display: flex;
   justify-content: space-around;
+  margin-top: .5em;
   text-align: center;
   width: 100%;
 }
@@ -66,6 +63,7 @@
 
 .stats .number {
   font-weight: bold;
+  margin-bottom: 0;
 }
 
 /* Badge Group */
@@ -99,6 +97,7 @@
 .last-row {
   display: flex;
   justify-content: space-between;
+  margin-top: .5em;
   width: 100%;
 }
 
@@ -119,7 +118,7 @@
   }
   
   .first-row {
-    flex-wrap: wrap;
+    flex-direction: column;
   }
   
   .user-card {
@@ -128,5 +127,9 @@
   
   .author-info {
     flex-direction: column;
+  }
+
+  .action {
+    width: 100%;
   }
 }

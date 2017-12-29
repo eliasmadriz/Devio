@@ -62,16 +62,20 @@
         </div>
         
         <div class="post-buttons">     
+<!--
           <div class="post-button edit">
             <img src="/static/icons/edit.svg" alt="">
           </div>
+-->
           
+<!--
           <div class="post-button bookmark" @click="toggleBookmark">
             <transition name="quick-fade" mode="out-in">
               <img src="/static/icons/bookmark-active.png" alt="" v-if="userHasBookmarked" key="bookmarked">
               <img src="/static/icons/bookmark.png" alt="" v-else key="not-bookmarked">
             </transition>
           </div>          
+-->
         </div>
       </div>
     </div>

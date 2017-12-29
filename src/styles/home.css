@@ -41,13 +41,17 @@ body.home .landing-section {
 	background-size: contain;
 }
 
-.home .navbar-dark .navbar-brand {
+.home .navbar-brand, .home .navbar-brand:hover, .home .navbar-brand:active {
 	color: white;
 }
 
 .home .menu-button {
 	background: url("/static/icons/menu-button-white.png") no-repeat center;
 	background-size: contain;	
+}
+
+.home .searchbar, .home .searchbar::placeholder, .home .searchbar:active {
+  color: var(--neutral);
 }
 
 .home .search-button div {
@@ -122,7 +126,7 @@ section.secondary {
   min-width: 300px;
 }
 
-.home .post-card:not(:last-child) {
+.home .post-card:not(:last-child), .home .user-card:not(:last-child) {
   margin-right: 1em;
 }
 
@@ -173,11 +177,13 @@ section.secondary {
 /* Desktop styles */
 
 @media (min-width: 768px) {
-  .landing-section {
-    min-height: 100vh;
-  }
-  
   .home .illustration {
     margin-bottom: 3em;
+  }
+}
+
+@media (min-width: 768px) and (max-height: 800px) {
+  .landing-section {
+    min-height: 100vh;
   }
 }

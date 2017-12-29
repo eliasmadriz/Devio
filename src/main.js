@@ -12,6 +12,8 @@ import techCard from './components/TechCard.vue'
 import postCard from './components/Postcard.vue'
 import userCard from './components/UserCard.vue'
 import userActionButton from './components/userActionButton.vue'
+import landing from './components/Landing.vue'
+import dashboard from './components/Dashboard.vue'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -27,6 +29,8 @@ Vue.component('footer-section', footer)
 Vue.component('post-card', postCard)
 Vue.component('user-card', userCard)
 Vue.component('user-action-button', userActionButton)
+Vue.component('landing', landing)
+Vue.component('dashboard', dashboard)
 
 Vue.config.productionTip = false
 

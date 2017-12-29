@@ -10,7 +10,7 @@
         <h3>Publicaciones</h3>
         
         <div class="posts-wrapper">
-          <post-card v-for="post in posts" :post="post" :key="post.id" :showAuthor="false"></post-card>
+          <post-card v-if="posts !== 'empty'" v-for="post in posts" :post="post" :key="post.id" :showAuthor="false"></post-card>
           
           <div class="empty-post-list" v-if="posts === 'empty'">Este usuario aún no ha publicado nada <span>:(</span></div>
         </div>

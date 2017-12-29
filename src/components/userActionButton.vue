@@ -49,17 +49,16 @@
     .action {
       display: flex;
       flex-direction: column;
-      
-      width: 80%;
-      margin: .5em auto;
     }
   }
   
   @media (max-width: 380px) {  
     .follow {
-      text-align: center;
       align-self: center;
-      width: 70%;
+      margin: .5em auto;
+      max-width: 200px;
+      text-align: center;
+      width: 80%;
     }
   }
 </style>

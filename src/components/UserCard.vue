@@ -1,5 +1,6 @@
 <template>
   <div class="user-card">
+
     <div class="first-row">
       <router-link class="user" :to="'/' + user.username">
         <img :src="user.avatar" alt="" class="avatar">
@@ -34,7 +35,7 @@
       </div>
     </div>
     
-    <div class="last-row">
+    <div class="last-row" v-if="!minified">
       <div class="badge-group social">
         <a :href="socialLink.url" target="_blank" class="badge social" v-for="socialLink in user.socialLinks" :key="socialLink.name">
           <img :src="$store.getters.getSocialNetworkInfo(socialLink.name).logo" alt="">
@@ -51,12 +52,7 @@
 
 <script>
   export default {
-    props: ['user'],
-    data () {
-      return {
-        
-      }
-    }
+    props: ['user', 'minified']
   }
 </script>
 

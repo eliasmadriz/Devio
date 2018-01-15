@@ -24,10 +24,10 @@ nav.open {
 .navbar .nav-items a {
   align-items: center;
 	color: var(--secondary);
-  display: flex;
+	display: flex;
+	height: 100%;
+	padding: .2em 0;
 	text-decoration: none;
-  padding: .2em 0;
-  height: 100%;
 }
 
 .navbar-dark .navbar-brand, .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
@@ -67,6 +67,13 @@ button.navbar-toggler {
   font-weight: bold;
 }
 
+.nav-items button.navbar-toggler {
+  border: 0;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0;
+}
+
 .nav-item:not(:first-child) {
 	margin-left: 1em;
 }
@@ -81,10 +88,11 @@ button.navbar-toggler {
 
 .searchbar {
 	background-color: rgba(0,0,0,0);
-	border-radius: 6px;
-	border-width: 2px;
+	border-radius: var(--semi-rounded-corner);
+	border-width: 1px;
 	color: var(--secondary);
 	max-width: 16rem;
+	padding: .375em .5em;
 }
 
 .searchbar::placeholder {
@@ -94,7 +102,7 @@ button.navbar-toggler {
 }
 
 .searchbar:focus {
-	background-color: rgba(0,0,0,0.1);
+	background-color: rgba(0,0,0,0.05);
   color: var(--secondary);
 }
 
@@ -190,6 +198,7 @@ button.navbar-toggler {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
+    transform: translateZ(0);
 	}
   
   .navbar-nav form {
@@ -218,6 +227,6 @@ button.navbar-toggler {
 	}
 	
 	.nav-items .nav-item {
-		margin: 0 auto .5em auto;
+		margin: 0 auto 1em auto;
 	}
 }

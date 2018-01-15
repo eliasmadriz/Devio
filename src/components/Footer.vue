@@ -16,9 +16,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    margin-top: 2rem;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+    padding: .5rem;
     position: absolute;
   }
   

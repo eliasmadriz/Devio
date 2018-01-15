@@ -1,38 +1,74 @@
 [
-   {
-      "logo": "/static/tech/javascript.png",
-      "name": "Javascript",
-      "totalPosts": 2,
-      "totalDevs": 5
-   },
-   {
-      "logo": "/static/tech/node.png",
-      "name": "Node.js",
-      "totalPosts": 2,
-      "totalDevs": 2
-   },
-   {
+    {
       "logo": "/static/tech/angular.png",
       "name": "Angular",
-      "totalPosts": 0,
-      "totalDevs": 1
-   },
-   {
-      "logo": "/static/tech/react.png",
-      "name": "React",
-      "totalPosts": 2,
-      "totalDevs": 3
-   },
-   {
-      "logo": "/static/tech/vue.png",
-      "name": "Vue.js",
-      "totalPosts": 1,
-      "totalDevs": 3
+      "posts": {
+        "total": 0,
+        "list": []
+    },
+    "devs": {
+        "total": 1,
+        "list": ["aaa"]
+    }
    },
    {
       "logo": "/static/tech/html.png",
       "name": "HTML",
-      "totalPosts": 1,
-      "totalDevs": 1
+      "posts": {
+        "total": 1,
+        "list": ["001"]
+    },
+    "devs": {
+        "total": 1,
+        "list": ["eee"]
+    }
+   },
+   {
+      "logo": "/static/tech/javascript.png",
+      "name": "Javascript",
+      "posts": {
+          "total": 2,
+          "list": ["001", "005"]
+      },
+      "devs": {
+          "total": 5,
+          "list": ["aaa", "bbb", "ccc", "ddd", "eee"]
+      }
+   },
+   {
+      "logo": "/static/tech/node.png",
+      "name": "Node.js",
+      "posts": {
+        "total": 2,
+        "list": ["001", "003", "004"]
+    },
+    "devs": {
+        "total": 2,
+        "list": ["aaa", "ddd"]
+    }
+   },
+   {
+      "logo": "/static/tech/react.png",
+      "name": "React",
+      "posts": {
+        "total": 2,
+        "list": ["003", "004"]
+    },
+    "devs": {
+        "total": 3,
+        "list": ["aaa", "bbb", "eee"]
+    }
+   },
+   {
+      "logo": "/static/tech/vue.png",
+      "name": "Vue.js",
+      "posts": {
+        "total": 1,
+        "list": ["002"]
+    },
+    "devs": {
+        "total": 3,
+        "list": ["aaa", "bbb", "eee"]
+    }
    }
 ]

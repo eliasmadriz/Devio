@@ -11,6 +11,7 @@ export const store = new Vuex.Store({
     techs: Techs,
     users: Users,
     posts: Posts,
+    loggedUserId: undefined,
     social: [
       {
         name: 'Github',
@@ -24,8 +25,7 @@ export const store = new Vuex.Store({
         name: 'Twitter',
         logo: '/static/social/twitter.png'
       }
-    ],
-    loggedUserId: 'ccc'
+    ]
 	},
   getters: {
     popularTechs (state) {
@@ -87,6 +87,66 @@ export const store = new Vuex.Store({
         return state.social.find(function (socialNetwork) {
           return socialNetwork.name === socialName
         })
+      }
+    }
+  },
+  actions: {
+    createPost ({state, commit, getters}, payload) {
+      const post = {
+        // This IDs generation will be substituted later by the firebase's default ID generation
+        id: Math.random().toString(36).substring(2, 15),
+        title: payload.title,
+        description: payload.description,
+        techs: payload.techs,
+        links: payload.links,
+        creationDate: payload.creationDate,
+        authorId: state.loggedUserId,
+        upvotes: payload.upvotes,
+        language: payload.language
+      }
+
+      commit('createPost', {
+        ...post
+      })
+    }
+  },
+  mutations: {
+    createPost (state, payload) {
+      state.posts.push(payload)
+      // Find the author and update their total posts number
+      state.users.find(function (user) {
+        if (user.id === state.loggedUserId) {
+          user.posts.total++
+          user.posts.list.push(payload.id)
+          return true
+        }
+      })
+
+      // Find the techs and update their total posts number
+      //   FIRST METHOD (Works, but not optimal)
+      // for (let i = 0; i < payload.techs.length; i++) {
+      //   state.techs.find(function (tech) {
+      //     if (tech.name === payload.techs[i]) {
+      //       tech.posts.total++
+      //       tech.posts.list.push(payload.id)
+      //       return true
+      //     }
+      //   })
+      // }
+
+      //   SECOND METHOD (Works, but depends on name sorting and toLowerCase functions)
+      payload.techs = payload.techs.sort(function (techA, techB) {
+        return techA.toLowerCase() > techB.toLowerCase()
+      })
+      let stateTechsLenght = state.techs.length
+      let payloadIndex = 0
+      let payloadLenght = payload.techs.length
+      for (let i = 0; i < stateTechsLenght; i++) {      
+        if (payload.techs[payloadIndex] === state.techs[i].name) {
+          payloadIndex++;
+        }
+        if (payloadIndex === payloadLenght) 
+          break
       }
     }
   }

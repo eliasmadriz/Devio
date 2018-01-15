@@ -55,7 +55,8 @@
   @media (max-width: 380px) {  
     .follow {
       align-self: center;
-      margin: .5em auto;
+      display: flex;
+      justify-content: center;
       max-width: 200px;
       text-align: center;
       width: 80%;

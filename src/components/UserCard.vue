@@ -5,7 +5,7 @@
       <router-link class="user" :to="'/' + user.username">
         <img :src="user.avatar" alt="" class="avatar">
         <div class="names">
-          <h5 class="public-name">{{ user.publicName }}</h5>
+          <h6 class="public-name">{{ user.publicName }}</h6>
           <p class="username">@{{ user.username }}</p>
         </div>
       </router-link>

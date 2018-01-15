@@ -20,11 +20,15 @@
   display: flex;
 }
 
-.avatar {
+.avatar {  
   height: 4em;
   margin-right: .75em;
   margin-bottom: .5em;
   width: 4rem;
+  
+  border-radius: 100%;
+  margin-bottom: .25rem;
+  width: 3rem;  
 }
 
 .names {
@@ -40,7 +44,6 @@
 
 .username {  
   color: var(--small-text-color);
-  font-size: 14px;
   margin: 0;
 }
 
@@ -117,19 +120,7 @@
     font-size: 1em;
   }
   
-  .first-row {
-    flex-direction: column;
-  }
-  
   .user-card {
     margin: 0 auto;
-  }
-  
-  .author-info {
-    flex-direction: column;
-  }
-
-  .action {
-    width: 100%;
   }
 }

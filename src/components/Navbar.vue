@@ -3,16 +3,13 @@
 		<div class="container">
 			<b-navbar-brand to="/"><div class="brand-logo"></div><span>Devio</span></b-navbar-brand>
 			
-			<b-navbar-toggle target="nav_collapse" id="menuButton" v-if="!focusPage" toggleable="md"><div class="menu-button"></div></b-navbar-toggle>
+			<b-navbar-toggle target="nav_collapse" id="menuButton" toggleable="md"><div class="menu-button"></div></b-navbar-toggle>
 			
+      <!-- Navbar for mobile devices -->
 			<b-collapse is-nav id="nav_collapse">
-			
-				<!-- Right aligned nav items -->
-				<b-navbar-nav>
-					<div class="spacer d-none d-md-block"></div>
-					
+			  <b-navbar-nav class="d-md-none">					
 					<!-- Search bar -->
-					<b-nav-form v-if="!focusPage">
+					<b-nav-form>
 						<b-form-input size="sm" class="mr-sm-2 searchbar" type="text" placeholder="Buscar" autocomplete="off"/>
 						<b-button size="sm" class="search-button my-2 my-sm-0">
 						  <div></div>
@@ -21,52 +18,112 @@
 					
 					<!-- Navbar for logged users -->		
 					<div class="nav-items" v-if="loggedUserId !== undefined">
-						<router-link to="/" class="nav-item" right>
-              <div class="button filled primary">Publicar <img src="/static/icons/megaphone.png" alt="" class="text-icon"></div>
-            </router-link>
-									
+            <b-navbar-toggle target="nav_collapse">
+              <button class="nav-item button filled primary" right v-b-modal.PostModal>Publicar <img src="/static/icons/megaphone.png" alt="" class="text-icon"></button>
+            </b-navbar-toggle>
+
+            <b-navbar-toggle target="nav_collapse">
               <router-link to="/" right class="nav-item">
                 Inicio
               </router-link>
+            </b-navbar-toggle>
 
-            <router-link to="/explore" right class="nav-item">
-              Explorar
-            </router-link>
-					
-						<div class="dropdown nav-item d-none d-md-block">
-							<img id="nav-avatar" :src="this.$store.getters.getUser(loggedUserId).avatar" alt="" class="button outlined">
-							<div id="dropdown-links" class="dropdown-content">
-								<router-link :to="'/' + this.$store.getters.getUser(loggedUserId).username" class="dropdown-link" right>Mi perfil</router-link>
-								
-								<router-link to="/LoggedUserId" class="dropdown-link" right>Marcadores</router-link>
-						
-								<router-link to="/" class="dropdown-link" right>Cerrar Sesión</router-link>
-							</div>
-						</div>
-									
-            <!-- For mobile only -->
-						<router-link to="/" right class="d-md-none nav-item">Mi perfil</router-link>
-						
-						<router-link to="/" right class="d-md-none nav-item">Cerrar Sesión</router-link>
+            <!-- <b-navbar-toggle target="nav_collapse">
+              <router-link to="/explore" right class="nav-item">
+                Explorar
+              </router-link>
+            </b-navbar-toggle> -->
+            
+            <b-navbar-toggle target="nav_collapse">
+              <router-link :to="'/' + this.$store.getters.getUser(loggedUserId).username" right class="nav-item">
+                Mi perfil
+              </router-link>
+            </b-navbar-toggle>
+            
+            <b-navbar-toggle target="nav_collapse">
+              <router-link to="/" right class="nav-item">
+                Cerrar sesión
+              </router-link>
+            </b-navbar-toggle>
+          </div>
+          
+          <!-- Navbar for unlogged users -->
+          <div class="nav-items" v-if="!loggedUserId">
+            <!-- <b-navbar-toggle target="nav_collapse">
+              <router-link to="/explore" right class="nav-item">
+                Explorar
+              </router-link>
+            </b-navbar-toggle> -->
+             
+            <b-navbar-toggle target="nav_collapse">
+              <router-link to="/login" right class="nav-item">
+                <div class="button outlined">
+                  Iniciar Sesión
+                </div>
+              </router-link>
+						</b-navbar-toggle>
+
+            <b-navbar-toggle target="nav_collapse">
+              <router-link to="/signup" right class="nav-item">
+                <div class="button filled neutral">
+                  Registrarse
+                </div>
+              </router-link>
+            </b-navbar-toggle>
 					</div>
-								
-					<!-- Navbar for unlogged users -->
-					<div class="nav-items" v-if="!focusPage && !loggedUserId">
-						<router-link to="/explore" right class="nav-item">
-				      Explorar
-						</router-link>
-
-						<router-link to="/login" right class="nav-item">
-						  <div class="button outlined">Iniciar Sesión</div>
-						</router-link>
-
-						<router-link to="/signup" right class="nav-item">
-						  <div class="button filled neutral">Registrarse</div>
-						</router-link>
-					</div>
-				</b-navbar-nav>		
+        </b-navbar-nav>
 			</b-collapse>
+			
+      <!-- Navbar for desktop devices -->
+			<b-navbar-nav class="d-none d-md-flex">					
+        <div class="spacer"></div>
+        <!-- Search bar -->
+        <b-nav-form>
+          <b-form-input size="sm" class="mr-sm-2 searchbar" type="text" placeholder="Buscar" autocomplete="off"/>
+          <b-button size="sm" class="search-button my-2 my-sm-0">
+            <div></div>
+          </b-button>
+        </b-nav-form>
+        
+        <!-- Unlogged users -->
+        <div class="nav-items" v-if="!loggedUserId">
+          <!-- <router-link to="/explore" right class="nav-item">
+            Explorar
+          </router-link> -->
+
+          <router-link to="/login" right class="nav-item">
+            <div class="button outlined">Iniciar Sesión</div>
+          </router-link>
+
+          <router-link to="/signup" right class="nav-item">
+            <div class="button filled neutral">Registrarse</div>
+          </router-link>
+        </div>
+        
+        <!-- Logged users -->
+        <div class="nav-items" v-else>
+          <button class="nav-item button filled primary" right v-b-modal.PostModal>Publicar <img src="/static/icons/megaphone.png" alt="" class="text-icon"></button>
+         
+          <router-link to="/" right class="nav-item">
+            Inicio
+          </router-link>
+          
+          <!-- <router-link to="/explore" right class="nav-item">
+            Explorar
+          </router-link> -->
+         
+          <div class="dropdown nav-item">
+            <img id="nav-avatar" :src="this.$store.getters.getUser(loggedUserId).avatar" alt="" class="button outlined">
+            <div id="dropdown-links" class="dropdown-content">
+              <router-link :to="'/' + this.$store.getters.getUser(loggedUserId).username" class="dropdown-link" right>Mi perfil</router-link>
+
+              <router-link to="/" class="dropdown-link" right>Cerrar Sesión</router-link>
+            </div>
+          </div>
+        </div>
+      </b-navbar-nav>
 		</div>
+		<post-modal></post-modal>
   </b-navbar>
 </template>
 
@@ -98,9 +155,6 @@
       }
     },
     computed: {
-      focusPage () {
-        return this.$route.path.indexOf('/login') === 0 || this.$route.path.indexOf('/signup') === 0
-      },
       currentPageIsLandingPage () {
         return this.$route.path.indexOf('/') === 0
       }

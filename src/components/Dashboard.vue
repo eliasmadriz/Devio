@@ -7,7 +7,7 @@
 
         <div class="post-shortcut">
           <h5>Comparte algo con tus seguidores</h5>
-          <div class="button filled primary">Publicar <img src="/static/icons/megaphone.png" alt="" class="text-icon"></div>
+          <div class="button filled primary" v-b-modal.PostModal>Publicar <img src="/static/icons/megaphone.png" alt="" class="text-icon"></div>
         </div>
       </div>
 
@@ -36,9 +36,6 @@
       posts () {
         return this.$store.getters.dashboardPosts
       }
-    },
-    mounted () {
-
     }
   }
 </script>

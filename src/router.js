@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Profile from '@/components/Profile'
 import Credits from '@/components/Credits'
+import SinglePost from '@/components/SinglePost'
 
 Vue.use(Router)
 
@@ -38,6 +39,12 @@ export default new Router({
       name: 'Profile',
       component: Profile,
       props: true
-    }
+		},
+		{
+			path: '/:username/:postId',
+			name: 'SinglePost',
+			component: SinglePost,
+			props: true
+		}
 	]
 });

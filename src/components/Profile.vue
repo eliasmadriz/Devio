@@ -25,11 +25,6 @@
       this.fetchData()
     },
     props: ['username'],
-    data () {
-      return {
-        
-      }
-    },
     computed: {
       user () {
         return this.$store.getters.getUserByUsername(this.username)

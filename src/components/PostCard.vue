@@ -35,10 +35,10 @@
         </div>
       </div>
       
-      <h5 class="post-title">
-        <a href="">{{ post.title }}</a>
+      <router-link class="post-title" :to="'/'+author.username+'/'+post.id">
+        <h5>{{ post.title }}</h5>
         <small class="date">6d</small>
-      </h5>
+      </router-link>
       
       <p class="description">
         {{ post.description }}
@@ -106,4 +106,4 @@
   }
 </script>
 
-<style scoped src="../styles/postCard.css">  </style>
+<style scoped src="../styles/postCard.css"></style>

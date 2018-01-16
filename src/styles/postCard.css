@@ -107,7 +107,14 @@
 
 /* Title */
 .post-title {
+  align-items: baseline;
+  display: flex;
   margin-bottom: 0;
+}
+
+.post-title h5 {
+  margin-bottom: 0;
+  margin-right: .25em;
 }
 
 .first-row {
@@ -119,7 +126,7 @@
 
 .date {
   color: #9b9b9b;
-  font-size: .6em;
+  font-size: .85em;
 }
 
 /* Description */

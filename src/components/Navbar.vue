@@ -3,7 +3,7 @@
 		<div class="container">
 			<b-navbar-brand to="/"><div class="brand-logo"></div><span>Devio</span></b-navbar-brand>
 			
-			<b-navbar-toggle target="nav_collapse" id="menuButton" toggleable="md"><div class="menu-button"></div></b-navbar-toggle>
+			<b-navbar-toggle target="nav_collapse" id="menuButton" toggleable="md" class="d-md-none"><div class="menu-button"></div></b-navbar-toggle>
 			
       <!-- Navbar for mobile devices -->
 			<b-collapse is-nav id="nav_collapse">

@@ -18,6 +18,7 @@
     font-size: 14px;
     padding: .5rem;
     position: absolute;
+    width: 100%
   }
   
   .footer .container {

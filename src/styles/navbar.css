@@ -15,6 +15,12 @@ nav.open {
 	background-color: var(--navbar-background);
 }
 
+nav .container {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+}
+
 .navbar-brand {
 	align-items: center;
 	display: flex;	
@@ -25,6 +31,7 @@ nav.open {
   align-items: center;
 	color: var(--secondary);
 	display: flex;
+	font-family: 'Quicksand', sans-serif;
 	height: 100%;
 	padding: .2em 0;
 	text-decoration: none;
@@ -57,6 +64,7 @@ button.navbar-toggler {
 
 .navbar-nav {
 	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
 }
@@ -189,15 +197,26 @@ button.navbar-toggler {
 	nav {
 		font-size: 14px;
 	}
+
+	nav .container {
+		align-items: stretch;
+		display: flex;
+		flex-direction: column;
+	}
+
+	#menuButton {
+		position: absolute;
+		right: 0;
+	}
 	
-	.navbar-collapse.show {
+	.navbar-collapse.show {		
 		min-height: 100vh;
 	}
 	
 	.navbar-nav {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
+		align-items: center;
     transform: translateZ(0);
 	}
   
@@ -213,14 +232,13 @@ button.navbar-toggler {
   }
 	
 	.nav-items {
-		display: flex;
+		align-items: stretch;
 		flex-direction: column;
-		justify-content: space-around;
 	}
-  
-  .nav-item .button {
-    padding: 8px 40px;
-  }
+
+	.nav-items .navbar-toggler {
+	  align-self: center;
+	}
 	
 	.navbar-nav {
 		margin-top: 1em;
@@ -228,5 +246,11 @@ button.navbar-toggler {
 	
 	.nav-items .nav-item {
 		margin: 0 auto 1em auto;
+	}
+}
+
+@media (max-width: 575px) {
+	nav .container {
+		margin: 0;
 	}
 }

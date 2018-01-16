@@ -50,6 +50,10 @@ body.home .landing-section {
 	background-size: contain;	
 }
 
+.home .searchbar {
+  border-color: white;
+}
+
 .home .searchbar, .home .searchbar::placeholder, .home .searchbar:active {
   color: var(--neutral);
 }

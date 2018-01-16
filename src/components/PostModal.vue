@@ -88,7 +88,6 @@
 </template>
 
 <script>
-  import VueAwesomplete from 'vue-awesomplete'
   export default {
     data () {
       return {
@@ -176,9 +175,6 @@
       changeLinkType (i) {
         this.newLinkType = i
       }
-    },
-    components: {
-      VueAwesomplete
     }
   }
 </script>

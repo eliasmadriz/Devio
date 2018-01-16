@@ -4,7 +4,7 @@ import router from './router'
 import {store} from './store.js'
 import BootstrapVue from 'bootstrap-vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import VueAwesomplete from 'vue-awesomplete'
+
 
 import navbar from './components/Navbar.vue'
 import footer from './components/Footer.vue'
@@ -16,6 +16,8 @@ import userActionButton from './components/userActionButton.vue'
 import landing from './components/Landing.vue'
 import dashboard from './components/Dashboard.vue'
 import PostModal from './components/PostModal.vue'
+
+import VueAwesomplete from './components/Awesomplete.vue'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -36,6 +38,7 @@ Vue.component('user-action-button', userActionButton)
 Vue.component('landing', landing)
 Vue.component('dashboard', dashboard)
 Vue.component('post-modal', PostModal)
+Vue.component('vue-awesomplete', VueAwesomplete)
 
 Vue.config.productionTip = false
 

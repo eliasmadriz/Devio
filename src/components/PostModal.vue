@@ -89,6 +89,12 @@
 
 <script>
   export default {
+    mounted () {
+      const _this = this
+      this.$root.$on('EditPost', function (post) {
+        _this.newPost = post
+      })
+    },
     data () {
       return {
         existingTechs: this.$store.state.techs.map(function (tech) {
@@ -100,7 +106,10 @@
           techs: [],
           links: [],
           language: "spanish",
-          upvotes: {total: 0, list: []}
+          upvotes: {total: 0, list: []},
+          // This IDs generation will be substituted later by the firebase's default ID generation
+          id: Math.random().toString(36).substring(2, 15),
+          authorId: this.$store.state.loggedUserId
         },
         newTechName: '',
         newLinkUrl: '',
@@ -128,17 +137,23 @@
         if (!this.validPost) 
           return;
         else {
-          this.newPost.creationDate = new Date()
+          this.newPost.creationDate = this.newPost.creationDate || new Date()
           this.$store.dispatch('createPost', this.newPost)
-          this.newPost.title = ''
-          this.newPost.description = ''
-          this.newPost.techs = []
-          this.newPost.links = []
-          console.log(this.newPost)
           this.hideModal()
         }
       },
       hideModal () {
+        // restart modal state
+        this.newPost = {
+          title: '',
+          description: '',
+          techs: [],
+          links: [],
+          language: "spanish",
+          upvotes: {total: 0, list: []},
+          id: Math.random().toString(36).substring(2, 15),
+          authorId: this.$store.state.loggedUserId
+        }
         this.$refs.PostModal.hide()
       },
       deleteEntry (arr, i) {

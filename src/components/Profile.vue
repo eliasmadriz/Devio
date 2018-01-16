@@ -21,13 +21,19 @@
 
 <script>
   export default {
+    update () {
+      this.fetchData()
+    },
     props: ['username'],
     data () {
       return {
-        user: this.$store.getters.getUserByUsername(this.username)
+        
       }
     },
     computed: {
+      user () {
+        return this.$store.getters.getUserByUsername(this.username)
+      },
       posts () {
         if (this.user.posts.list.length > 0) {
           return this.user.posts.list.map((postId) => {
@@ -36,6 +42,12 @@
         } else {
           return 'empty'
         }
+      }
+    },
+    methods: {
+      fetchData () {
+        alert('updated!')
+        this.user = this.$store.getters.getUserByUsername(this.username)
       }
     }
   }

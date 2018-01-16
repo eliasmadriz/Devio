@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
     techs: Techs,
     users: Users,
     posts: Posts,
-    loggedUserId: undefined,
+    loggedUserId: 'ccc',
     social: [
       {
         name: 'Github',
@@ -93,14 +93,13 @@ export const store = new Vuex.Store({
   actions: {
     createPost ({state, commit, getters}, payload) {
       const post = {
-        // This IDs generation will be substituted later by the firebase's default ID generation
-        id: Math.random().toString(36).substring(2, 15),
+        id: payload.id,
         title: payload.title,
         description: payload.description,
         techs: payload.techs,
         links: payload.links,
         creationDate: payload.creationDate,
-        authorId: state.loggedUserId,
+        authorId: payload.authorId,
         upvotes: payload.upvotes,
         language: payload.language
       }
@@ -112,15 +111,29 @@ export const store = new Vuex.Store({
   },
   mutations: {
     createPost (state, payload) {
-      state.posts.push(payload)
-      // Find the author and update their total posts number
-      state.users.find(function (user) {
-        if (user.id === state.loggedUserId) {
-          user.posts.total++
-          user.posts.list.push(payload.id)
-          return true
+      let statePostsLength = state.posts.length
+      for (let i = 0; i < statePostsLength; i++) {
+
+        // If the post already existed (edit)
+        if (state.posts[i].id === payload.id) {
+          state.posts[i] = payload
+          break;
         }
-      })
+        
+        // If the post is new (create)
+        if (i === statePostsLength - 1) {          
+          state.posts.push(payload)
+
+          // Find the author and update their total posts number
+          state.users.find(function (user) {
+            if (user.id === state.loggedUserId) {
+              user.posts.total++
+              user.posts.list.push(payload.id)
+              return true
+            }
+          })
+        }
+      }
 
       // Find the techs and update their total posts number
       //   FIRST METHOD (Works, but not optimal)
@@ -135,19 +148,19 @@ export const store = new Vuex.Store({
       // }
 
       //   SECOND METHOD (Works, but depends on name sorting and toLowerCase functions)
-      payload.techs = payload.techs.sort(function (techA, techB) {
-        return techA.toLowerCase() > techB.toLowerCase()
-      })
-      let stateTechsLenght = state.techs.length
-      let payloadIndex = 0
-      let payloadLenght = payload.techs.length
-      for (let i = 0; i < stateTechsLenght; i++) {      
-        if (payload.techs[payloadIndex] === state.techs[i].name) {
-          payloadIndex++;
-        }
-        if (payloadIndex === payloadLenght) 
-          break
-      }
+      // payload.techs = payload.techs.sort(function (techA, techB) {
+      //   return techA.toLowerCase() > techB.toLowerCase()
+      // })
+      // let stateTechsLenght = state.techs.length
+      // let payloadIndex = 0
+      // let payloadLenght = payload.techs.length
+      // for (let i = 0; i < stateTechsLenght; i++) {      
+      //   if (payload.techs[payloadIndex] === state.techs[i].name) {
+      //     payloadIndex++;
+      //   }
+      //   if (payloadIndex === payloadLenght) 
+      //     break
+      // }
     }
   }
 })

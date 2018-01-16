@@ -18,7 +18,7 @@
     <div class="post-content">
       <div class="first-row">
         <div class="badge-group techs">
-          <img class="tech badge" v-for="techName in post.techs" :src="$store.getters.getTechInfo(techName).logo" alt="">
+          <img class="tech badge" v-for="techName in post.techs" :src="$store.getters.getTechInfo(techName).logo" :key="techName" alt="">
         </div>
         
         <div class="upvotes">
@@ -48,7 +48,7 @@
         <div class="badges-section">
           <div class="badge-group links">
             <div class="badges">
-              <a :href="link.url" target="_blank" class="link" v-for="link in post.links">
+              <a :href="link.url" target="_blank" class="link" v-for="link in post.links" :key="link.url">
                 <div class="badge-holder">
                   <img class="badge" :src="'/static/icons/' + link.type + '.png'" alt="">
                 </div>
@@ -62,20 +62,20 @@
           </div>
 -->
         </div>
-<!--
+
         <div class="post-buttons">     
-          <div class="post-button edit">
+          <div class="post-button edit" @click="editPost(post)" v-b-modal.PostModal v-if="post.authorId === this.$store.state.loggedUserId"> 
             <img src="/static/icons/edit.svg" alt="">
           </div>
           
-          <div class="post-button bookmark" @click="toggleBookmark">
+          <!-- <div class="post-button bookmark" @click="toggleBookmark">
             <transition name="quick-fade" mode="out-in">
               <img src="/static/icons/bookmark-active.png" alt="" v-if="userHasBookmarked" key="bookmarked">
               <img src="/static/icons/bookmark.png" alt="" v-else key="not-bookmarked">
             </transition>
-          </div>          
+          </div>           -->
         </div>
--->
+
       </div>
     </div>
   </div>
@@ -98,6 +98,9 @@
       },
       toggleBookmark () {
         this.userHasBookmarked = !this.userHasBookmarked
+      },
+      editPost (post) {
+        this.$root.$emit('EditPost', post)
       }
     }
   }

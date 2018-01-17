@@ -2,7 +2,7 @@
   <div class="page-content container">
     <div class="row">
       <div class="col-12 col-md-8 offset-md-2">
-        <post-card :post="post" :key="post.id" :showAuthor="true"></post-card>
+        <post-card :post="post" :showAuthor="true"></post-card>
       </div>
     </div>
   </div>

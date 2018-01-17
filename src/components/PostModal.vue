@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <b-modal id="PostModal" ref="PostModal" no-close-on-backdrop no-close-on-esc>
+  <div v-if="$store.state.loggedUserId !== undefined">
+    <b-modal id="EditPostModal" ref="EditPostModal" no-close-on-backdrop no-close-on-esc>
       <div slot="modal-header">
-        <button class="button outlined dark" @click="hideModal"><img src="/static/icons/cancel-black.png" alt="" class="text-icon"> Cancelar</button>
+        <button class="button outlined dark" @click="hideEditPostModal"><img src="/static/icons/cancel-black.png" alt="" class="text-icon"><span>Cancelar</span></button>
         <h4 class="modal-title d-none d-md-block">Nueva Publicación</h4>
-        <button class="button filled primary" @click="commitPost" :disabled="!validPost">Publicar <img src="/static/icons/megaphone.png" alt="" class="text-icon"></button>
+        <button class="button filled primary" @click="commitPost" :disabled="!validPost"><span>Publicar</span><img src="/static/icons/megaphone.png" alt="" class="text-icon"></button>
       </div>
            
       <h4 class="title d-md-none">Nueva publicación</h4>
@@ -60,7 +60,7 @@
             <div class="list-entry" v-for="(tech, i) in newPost.techs" :key="i">
               <img :src='$store.getters.getTechInfo(tech).logo' alt="" class="entry-icon">
               <span class="entry-title">{{ tech }}</span>
-              <button class="remove-entry button outlined dark" @click="deleteEntry('techs', i)"><img src="/static/icons/cancel-black.png" alt=""></button>
+              <button class="remove-entry button outlined dark" @click="deleteEntry('techs', i)"><img src="/static/icons/trash.png" alt=""></button>
             </div>
             <div class="empty-list" v-if="!newPost.techs.length">
               <span>Aún no has agregado ninguna tecnología.</span>
@@ -73,7 +73,7 @@
             <div class="list-entry" v-for="(link, i) in newPost.links" :key="i">
               <img :src='"/static/icons/" + link.type + ".png"' alt="" class="entry-icon">
               <a class="entry-title" :href="link.url" target="_blank">{{ link.url }}</a>
-              <button class="remove-entry button outlined dark" @click="deleteEntry('links', i)"><img src="/static/icons/cancel-black.png" alt=""></button>
+              <button class="remove-entry button outlined dark" @click="deleteEntry('links', i)"><img src="/static/icons/trash.png" alt=""></button>
             </div>
             <div class="empty-list" v-if="!newPost.links.length">
               <span>Aún no has agregado ningún enlace.</span>
@@ -82,6 +82,20 @@
         </div>
       </div>
       
+      <div class="modal-footer"></div>
+    </b-modal>
+
+    <b-modal id="DeletePostModal" ref="DeletePostModal" no-close-on-backdrop no-close-on-esc>
+      <div slot="modal-header">
+        <button class="button outlined dark" @click="hideDeletePostModal"><img src="/static/icons/cancel-black.png" alt="" class="text-icon"><span>No</span></button>
+
+        <h4 class="modal-title d-none d-md-block">¿Eliminar?</h4>
+
+        <button class="button filled danger" @click="DeletePost"><img src="/static/icons/trash-white.png" alt="" class="text-icon"><span>Sí</span></button>
+      </div>
+      
+      <post-card :post="erasingPostComputed" :showAuthor="false" :erasing="true"></post-card>
+
       <div class="modal-footer"></div>
     </b-modal>
   </div>
@@ -94,9 +108,23 @@
       this.$root.$on('EditPost', function (post) {
         _this.newPost = post
       })
+      this.$root.$on('DeletePost', function (post) {
+        _this.erasingPost = post
+      })
     },
     data () {
       return {
+        erasingPost: {
+          title: '',
+          description: '',
+          techs: [],
+          links: [],
+          language: "spanish",
+          upvotes: {total: 0, list: []},
+          // This IDs generation will be substituted later by the firebase's default ID generation
+          id: Math.random().toString(36).substring(2, 15),
+          authorId: this.$store.state.loggedUserId
+        },
         existingTechs: this.$store.state.techs.map(function (tech) {
           return tech.name.toLowerCase()
         }),
@@ -119,6 +147,10 @@
       }
     },
     computed: {
+      erasingPostComputed () {
+        // console.log(this.erasingPost)
+        return this.erasingPost
+      },
       techIndex () {
         return this.existingTechs.indexOf(this.newTechName.toLowerCase())
       },
@@ -139,10 +171,13 @@
         else {
           this.newPost.creationDate = this.newPost.creationDate || new Date()
           this.$store.dispatch('createPost', this.newPost)
-          this.hideModal()
+          this.hideEditPostModal()
         }
       },
-      hideModal () {
+      hideDeletePostModal () {
+        this.$refs.DeletePostModal.hide()
+      },
+      hideEditPostModal () {
         // restart modal state
         this.newPost = {
           title: '',
@@ -154,7 +189,7 @@
           id: Math.random().toString(36).substring(2, 15),
           authorId: this.$store.state.loggedUserId
         }
-        this.$refs.PostModal.hide()
+        this.$refs.EditPostModal.hide()
       },
       deleteEntry (arr, i) {
         this.newPost[arr].splice(i, 1)
@@ -189,6 +224,10 @@
       },
       changeLinkType (i) {
         this.newLinkType = i
+      },
+      DeletePost () {
+        this.$store.dispatch('DeletePost', this.erasingPostComputed)
+        this.hideDeletePostModal()
       }
     }
   }

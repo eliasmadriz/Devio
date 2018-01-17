@@ -19,7 +19,7 @@
 					<!-- Navbar for logged users -->		
 					<div class="nav-items" v-if="loggedUserId !== undefined">
             <b-navbar-toggle target="nav_collapse">
-              <button class="nav-item button filled primary" right v-b-modal.PostModal :update="{}">Publicar <img src="/static/icons/megaphone.png" alt="" class="text-icon"></button>
+              <button class="nav-item button filled primary" right v-b-modal.EditPostModal :update="{}"><span>Publicar</span><img src="/static/icons/megaphone.png" alt="" class="text-icon"></button>
             </b-navbar-toggle>
 
             <b-navbar-toggle target="nav_collapse">
@@ -102,7 +102,7 @@
         
         <!-- Logged users -->
         <div class="nav-items" v-else>
-          <button class="nav-item button filled primary" right v-b-modal.PostModal>Publicar <img src="/static/icons/megaphone.png" alt="" class="text-icon"></button>
+          <button class="nav-item button filled primary" right v-b-modal.EditPostModal><span>Publicar</span><img src="/static/icons/megaphone.png" alt="" class="text-icon"></button>
          
           <router-link to="/" right class="nav-item">
             Inicio

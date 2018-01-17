@@ -41,8 +41,12 @@ button {
   user-select: none;  
 }
 
-.button img {
-  margin: 0 .25em;
+.button :first-child:not(img) {
+  margin-right: .5em;
+}
+
+.button :last-child:not(img) {
+  margin-left: .5em;
 }
 
 .button.outlined {
@@ -73,6 +77,10 @@ button {
 .button.filled.primary {
   background-color: var(--primary);
   color: var(--neutral);
+}
+
+.button.filled.danger {
+  background-color: var(--danger);
 }
 
 .button[disabled = disabled] {
@@ -137,7 +145,8 @@ body {
 }
 
 .container, .container-fluid .row {
-	max-width: 1080px;
+  max-width: 1080px;
+  width: 100%;
 }
 
 .container-fluid .row {

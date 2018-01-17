@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
     techs: Techs,
     users: Users,
     posts: Posts,
-    loggedUserId: 'ccc',
+    loggedUserId: undefined,
     social: [
       {
         name: 'Github',
@@ -91,7 +91,7 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    createPost ({state, commit, getters}, payload) {
+    createPost ({state, commit}, payload) {
       const post = {
         id: payload.id,
         title: payload.title,
@@ -107,6 +107,9 @@ export const store = new Vuex.Store({
       commit('createPost', {
         ...post
       })
+    },
+    DeletePost ({state, commit}, payload) {
+      commit('DeletePost', payload)
     }
   },
   mutations: {
@@ -161,6 +164,25 @@ export const store = new Vuex.Store({
       //   if (payloadIndex === payloadLenght) 
       //     break
       // }
+    },
+    DeletePost (state, payload) {
+      let statePostsLength = state.posts.length
+      for (let i = 0; i < statePostsLength; i++) {
+        if (payload.id === state.posts[i].id) {
+          state.posts.splice(i, 1)
+          state.users.find(function (user, index) {
+            if (user.id === state.loggedUserId) {
+              user.posts.total--
+              let deletePostIndex = user.posts.list.findIndex(function (id) {
+                return id === payload.id
+              })
+              state.users[index].posts.list.splice(deletePostIndex, 1)
+              return true
+            }
+          })          
+          break;
+        }
+      }
     }
   }
 })

@@ -35,7 +35,7 @@
         </div>
       </div>
       
-      <router-link class="post-title" :to="'/'+author.username+'/'+post.id">
+      <router-link class="post-title" :to="'/' + author.username + '/' + post.id">
         <h5>{{ post.title }}</h5>
         <small class="date">6d</small>
       </router-link>
@@ -63,9 +63,13 @@
 -->
         </div>
 
-        <div class="post-buttons">     
-          <div class="post-button edit" @click="editPost(post)" v-b-modal.PostModal v-if="post.authorId === this.$store.state.loggedUserId"> 
+        <div class="post-buttons" v-if="(post.authorId === this.$store.state.loggedUserId) && (!erasing)">
+          <div class="post-button edit" @click="editPost(post)" v-b-modal.EditPostModal> 
             <img src="/static/icons/edit.svg" alt="">
+          </div>
+
+          <div class="post-button edit" @click="erasePost(post)" v-b-modal.DeletePostModal>
+            <img src="/static/icons/trash.png" alt="">
           </div>
           
           <!-- <div class="post-button bookmark" @click="toggleBookmark">
@@ -83,7 +87,7 @@
 
 <script>
   export default {
-    props: ['post', 'showAuthor'],
+    props: ['post', 'showAuthor', 'erasing'],
     data () {
       return {
         author: this.$store.getters.getUser(this.post.authorId),
@@ -101,6 +105,9 @@
       },
       editPost (post) {
         this.$root.$emit('EditPost', post)
+      },
+      erasePost (post) {
+        this.$root.$emit('DeletePost', post)
       }
     }
   }

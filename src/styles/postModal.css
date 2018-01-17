@@ -2,7 +2,7 @@
   padding-right: 0 !important;
 }
 
-.modal-dialog {
+#EditPostModal .modal-dialog {
   height: 100%;
   margin: 0;  
   max-width: 100%;
@@ -13,6 +13,10 @@
   border: 0;
   border-radius: 0;
   height: 100%;
+  width: 100%;
+}
+
+#DeletePostModal .post-card {
   width: 100%;
 }
 

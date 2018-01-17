@@ -110,7 +110,7 @@ section.secondary {
 
 /* Swiper */
 .swiper-container {
-  padding-bottom: 2em;
+  padding-bottom: 3em;
 }
 
 .swiper-slide, .swiper-slide > div {
@@ -122,7 +122,7 @@ section.secondary {
 }
 
 .techs .swiper-slide > div {
-  min-height: 100%;
+  min-height: 140px;
 }
 
 .posts .swiper-slide {

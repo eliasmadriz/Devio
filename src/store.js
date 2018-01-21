@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import Users from '../static/data/users.json'
 import Posts from '../static/data/posts.json'
 import Techs from '../static/data/techs.json'
-import emailsAndUsers from '../static/data/emailsAndUsers.json'
 
 import * as firebase from 'firebase'
 
@@ -15,7 +14,6 @@ export const store = new Vuex.Store({
     techs: Techs,
     users: Users,
     posts: Posts,
-    emailsAndUsers: [],
     loggedUserId: undefined,
     social: [
       {

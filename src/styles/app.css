@@ -5,7 +5,7 @@
 :root {
   /* Colors */
   --primary: #26ccff;
-	--secondary: #333;
+	--secondary: #ccc;
 	--neutral: white;
   --strong: #094666;
   --danger: #ea4242;
@@ -21,6 +21,14 @@
 
 button {
   background-color: inherit;
+  border: none;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+}
+
+button.button[disabled] {
+  cursor: not-allowed;
+  filter: none;
 }
 
 .button {
@@ -38,7 +46,7 @@ button {
   -webkit-user-select: none;
   -ms-user-select: none;
   transition: all .15s;
-  user-select: none;  
+  user-select: none;
 }
 
 .button :first-child:not(img) {
@@ -50,12 +58,12 @@ button {
 }
 
 .button.outlined {
-	border: 2px solid var(--secondary);	
+	border: 2px solid var(--dark);	
   background-color: transparent;
 }
 
 .button.outlined.dark {
-	border-color: var(--secondary);
+	border-color: var(--dark);
 }
 
 .button.outlined.primary {
@@ -63,15 +71,20 @@ button {
   color: var(--primary);
 }
 
+.button.outlined.secondary {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
 .button.filled {
-	background-color: var(--secondary);
+	background-color: var(--dark);
   border: 2px solid transparent;	
   color: var(--neutral);
 }
 
 .button.filled.dark {
-  background-color: var(--secondary);
-  color: var(--secondary);
+  background-color: var(--dark);
+  color: var(--dark);
 }
 
 .button.filled.primary {
@@ -89,12 +102,12 @@ button {
 }
 
 a {
-  color: var(--secondary);
+  color: var(--dark);
   text-decoration: none !important;
 }
 
 a:hover {
-  color: var(--secondary);
+  color: var(--dark);
   opacity: .8;
 }
 
@@ -103,7 +116,7 @@ a.button.filled {
 }
 
 a.button.outlined {
-	color: var(--secondary);
+	color: var(--dark);
 }
 
 .action.button {
@@ -126,6 +139,64 @@ a.button.outlined {
 
 input {
   font-family: 'Quicksand', sans-serif;
+}
+
+/* Alerts */
+
+.alert {
+  padding-right: 2em;
+  position: relative;
+  width: 100%;
+}
+
+.alert-dismissible .close {
+  position: absolute;
+  top: -1px;
+  right: -.1em;
+}
+
+/* Loading animation */
+.spinner {
+  /* margin: 100px auto 0; */
+  text-align: center;
+  --spinner-ball-size: 8px;
+  --spinner-ball-color: white;
+}
+
+.spinner > div {
+  width: var(--spinner-ball-size);
+  height: var(--spinner-ball-size);
+  background-color: var(--spinner-ball-color);
+  vertical-align: middle;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
 }
 
 /* Body */

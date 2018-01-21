@@ -10,7 +10,7 @@
 }
 
 .post-card a {
-  color: var(--secondary);
+  color: var(--dark);
 }
 
 /* Author info */
@@ -189,7 +189,7 @@
 }
 
 .badge-group .link {
-  color: var(--secondary);
+  color: var(--dark);
   display: flex;
   flex-direction: column;
   justify-content: center;

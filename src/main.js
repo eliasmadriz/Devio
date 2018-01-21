@@ -2,8 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import {store} from './store.js'
-import BootstrapVue from 'bootstrap-vue'
-import VueAwesomeSwiper from 'vue-awesome-swiper'
+import * as firebase from 'firebase'
 
 import navbar from './components/Navbar.vue'
 import footer from './components/Footer.vue'
@@ -17,6 +16,8 @@ import dashboard from './components/Dashboard.vue'
 import PostModal from './components/PostModal.vue'
 import SinglePost from './components/SinglePost.vue'
 
+import BootstrapVue from 'bootstrap-vue'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 import VueAwesomplete from './components/Awesomplete.vue'
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -48,5 +49,14 @@ new Vue({
   el: '#app',
   router,
 	store,
-  render: h => h(App)
+  render: h => h(App),
+  created () {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyByyA0UczEnX7Agw9JuI0B7N10W-M_YMx0',
+      authDomain: 'devio-app.firebaseapp.com',
+      databaseURL: 'https://devio-app.firebaseio.com',
+      projectId: 'devio-app',
+      storageBucket: 'devio-app.appspot.com',
+    })
+  }
 })

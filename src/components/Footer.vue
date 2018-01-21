@@ -12,7 +12,7 @@
   .footer {
     background-color: var(--neutral);
     bottom: 0;
-    color: var(--secondary);
+    color: var(--dark);
     display: flex;
     justify-content: space-between;
     font-size: 14px;

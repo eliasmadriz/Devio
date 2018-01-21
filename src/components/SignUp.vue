@@ -6,3 +6,12 @@
 		</div>
 	</div>
 </template>
+
+<script>
+	export default {
+		beforeMount () {
+			if (this.$store.state.loggedUserId !== undefined)
+				this.$router.push('/')
+		}
+	}
+</script>

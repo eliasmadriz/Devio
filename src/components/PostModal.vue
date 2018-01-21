@@ -91,10 +91,10 @@
 
         <h4 class="modal-title d-none d-md-block">¿Eliminar?</h4>
 
-        <button class="button filled danger" @click="DeletePost"><img src="/static/icons/trash-white.png" alt="" class="text-icon"><span>Sí</span></button>
+        <button class="button filled danger" @click="DeletePost"><span>Sí</span><img src="/static/icons/trash-white.png" alt="" class="text-icon"></button>
       </div>
       
-      <post-card :post="erasingPostComputed" :showAuthor="false" :erasing="true"></post-card>
+      <post-card :post="erasingPostComputed" :showAuthor="false" :erasing="true" v-if="erasingPost.title !== ''"></post-card>
 
       <div class="modal-footer"></div>
     </b-modal>
@@ -147,8 +147,7 @@
       }
     },
     computed: {
-      erasingPostComputed () {
-        // console.log(this.erasingPost)
+      erasingPostComputed () {        
         return this.erasingPost
       },
       techIndex () {
@@ -202,7 +201,8 @@
             this.$refs.NewTechField.clear()
             this.newPost.techs.push(this.$store.state.techs[i].name)
           } else 
-            console.log('You already added that tech!') // should be a tooltip or an alert
+            // TODO: (Notifications) Add 'duplicated tech' error popup
+            console.log('You already added that tech!') 
         }
       },
       addLink () {
@@ -218,6 +218,7 @@
             this.newLinkType = 0
             this.$refs.NewLinkType.selectedIndex = 0
           } else {
+            // TODO: (Notifications) Add 'duplicated link' error popup
             console.log('You already added that link!')
           }
         }

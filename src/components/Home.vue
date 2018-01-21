@@ -6,9 +6,15 @@
 
 <script>
   export default {
-    data () {
-      return {
-        loggedUserId: this.$store.state.loggedUserId
+    computed: {
+      loggedUserId () {
+        return this.$store.state.loggedUserId
+      }
+    },
+    watch: {
+      loggedUserId (value) {
+        if (value !== null && value !== undefined)
+        this.$router.push('/')
       }
     }
   }

@@ -27,14 +27,12 @@
 
 <script>
   export default {
-    data () {
-      return {
-        loggedUserId: this.$store.state.loggedUserId
-      }
-    },
     computed: {
       posts () {
         return this.$store.getters.dashboardPosts
+      },
+      loggedUserId () {
+        return this.$store.state.loggedUserId
       }
     }
   }

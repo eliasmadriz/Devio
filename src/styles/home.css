@@ -11,7 +11,8 @@ body.home .landing-section {
 	border: 2px solid var(--neutral);
 }
 
-.home .navbar-nav .button.filled {
+.home .navbar-nav .nav-item .button.filled {
+  color: var(--strong);
 	background-color: white;
 }
 
@@ -41,7 +42,10 @@ body.home .landing-section {
 	background-size: contain;
 }
 
-.home .navbar-brand, .home .navbar-brand:hover, .home .navbar-brand:active {
+.home .navbar-brand, 
+.home .navbar-brand:hover, 
+.home .navbar-brand:active,
+.home .navbar-brand:focus {
 	color: white;
 }
 

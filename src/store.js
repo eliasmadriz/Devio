@@ -3,7 +3,11 @@ import Vuex from 'vuex'
 import Users from '../static/data/users.json'
 import Posts from '../static/data/posts.json'
 import Techs from '../static/data/techs.json'
+import emailsAndUsers from '../static/data/emailsAndUsers.json'
 
+import * as firebase from 'firebase'
+
+Vue.use(firebase)
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
@@ -11,6 +15,7 @@ export const store = new Vuex.Store({
     techs: Techs,
     users: Users,
     posts: Posts,
+    emailsAndUsers: [],
     loggedUserId: undefined,
     social: [
       {
@@ -25,7 +30,9 @@ export const store = new Vuex.Store({
         name: 'Twitter',
         logo: '/static/social/twitter.png'
       }
-    ]
+    ],
+    loading: false,
+    error: null
 	},
   getters: {
     popularTechs (state) {
@@ -46,7 +53,7 @@ export const store = new Vuex.Store({
     dashboardPosts (state) {
       const user = store.getters.getUser(state.loggedUserId)
       return state.posts.filter(function (post) {
-        if (user.following.list.indexOf(post.authorId) !== -1)
+        if (user && user.following.list.indexOf(post.authorId) !== -1)
         return post
       }).sort(function (postA, postB) {
         return postA.creationDate < postB.creationDate
@@ -91,7 +98,7 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    createPost ({state, commit}, payload) {
+    createPost ({commit}, payload) {
       const post = {
         id: payload.id,
         title: payload.title,
@@ -104,16 +111,138 @@ export const store = new Vuex.Store({
         language: payload.language
       }
 
-      commit('createPost', {
+      commit('CreatePost', {
         ...post
       })
     },
-    DeletePost ({state, commit}, payload) {
+    DeletePost ({commit}, payload) {
       commit('DeletePost', payload)
+    },
+    SignUp ({commit}, payload) {
+      return new Promise((resolve, reject) => {
+        commit('setLoading', true)
+        let checkUsername = new Promise((resolve, reject) => {
+          firebase.database().ref('emailsAndUsers').once('value').then(function (data) {
+            let flag = false
+            const obj = data.val()
+            for (let key in obj) {
+              if (obj[key].username === payload.username) {
+                reject({code: 'auth/taken_username'})
+                flag = true
+                break
+              }
+            }
+            if (!flag)
+              resolve()
+          }).catch((error) => {reject(error)})
+        }).then(function (response) {
+          firebase.database().ref('emailsAndUsers').push({email: payload.email, username: payload.username})
+          firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then().catch((error) => {reject(error)})
+          .then(
+            user => {
+              commit('setLoading', false)
+              const newUser = {
+                id: user.uid,    
+                avatar: "/static/avatar/newUser.svg",
+                username: payload.username,
+                publicName: payload.name,
+                bio: "",
+                favTechs: [],
+                posts: {
+                  total: 0,
+                  list: []
+                },
+                followers: {
+                  total: 0,
+                  list: []
+                },
+                following: {
+                  total: 0,
+                  list: []
+                },
+                points: 0,
+                socialLinks: [],
+                website: ""
+              }
+              commit('SetUser', {newUser: newUser, email: payload.email})
+            }
+          )
+          .catch(function (error) {
+            commit('setLoading', false)
+            reject(error)
+          })
+        })
+        .catch((error) => {
+          reject(error)
+        })
+      })
+    },
+    SignIn ({state, commit}, payload) {
+      return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
+          let emailValidator = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
+          let isEmail = emailValidator.test(payload.email)
+          
+          if (isEmail) {
+            resolve(payload)
+          } else {
+            firebase.database().ref('emailsAndUsers').once('value')
+            .then((data) => {
+              const obj = data.val()
+              let newPayload = {}
+              let flag = false
+              for (let key in obj) {
+                if (obj[key].username === payload.email) {
+                  newPayload = {email: obj[key].email, password: payload.password}
+                  flag = true
+                  resolve(newPayload)
+                  break
+                }
+              }
+              if (!flag) {
+                reject({code: 'auth/invalid_username'})
+              }
+            })
+            .catch((error) => {reject(error)})
+          }
+        })
+        .then(function (response) {
+          return new Promise((resolve, reject) => {
+            commit('setLoading', true)
+            firebase.auth().signInWithEmailAndPassword(response.email, response.password)
+            .then(function (user) {
+              commit('setLoading', false)
+              const userId = user.uid
+              commit('SignIn', userId)
+              commit('setLoading', false)
+              resolve()
+            })
+            .catch(function (error) {
+              reject(error)
+            })
+          }).then()
+          .catch((error) => {
+            reject(error)
+          })
+        })
+        .catch(function (error) {
+          commit('setLoading', false)
+          reject(error)
+        })
+      })
+    },
+    LogOut ({commit}) {
+      commit('LogOut')
     }
   },
   mutations: {
-    createPost (state, payload) {
+    setLoading (state, payload) {
+      state.loading = payload
+    },
+    clearError (state, payload) {
+      state.error = null
+    },
+    CreatePost (state, payload) {
       let statePostsLength = state.posts.length
       for (let i = 0; i < statePostsLength; i++) {
 
@@ -139,18 +268,7 @@ export const store = new Vuex.Store({
       }
 
       // Find the techs and update their total posts number
-      //   FIRST METHOD (Works, but not optimal)
-      // for (let i = 0; i < payload.techs.length; i++) {
-      //   state.techs.find(function (tech) {
-      //     if (tech.name === payload.techs[i]) {
-      //       tech.posts.total++
-      //       tech.posts.list.push(payload.id)
-      //       return true
-      //     }
-      //   })
-      // }
-
-      //   SECOND METHOD (Works, but depends on name sorting and toLowerCase functions)
+      
       // payload.techs = payload.techs.sort(function (techA, techB) {
       //   return techA.toLowerCase() > techB.toLowerCase()
       // })
@@ -183,6 +301,17 @@ export const store = new Vuex.Store({
           break;
         }
       }
+    },
+    SetUser (state, payload) {      
+      state.users.push(payload.newUser)
+      state.loggedUserId = payload.newUser.id
+      state.emailsAndUsers.push({email: payload.email, username: payload.newUser.username})
+    },
+    SignIn (state, payload) {
+      state.loggedUserId = payload
+    },
+    LogOut(state) {
+      state.loggedUserId = undefined
     }
   }
 })

@@ -41,9 +41,9 @@
             </b-navbar-toggle>
             
             <b-navbar-toggle target="nav_collapse">
-              <router-link to="/" right class="nav-item">
+              <button right class="nav-item" @click="logOut">
                 Cerrar sesión
-              </router-link>
+              </button>
             </b-navbar-toggle>
           </div>
           
@@ -113,11 +113,11 @@
           </router-link> -->
          
           <div class="dropdown nav-item">
-            <img id="nav-avatar" :src="this.$store.getters.getUser(loggedUserId).avatar" alt="" class="button outlined">
+            <img id="nav-avatar" :src="this.$store.getters.getUser(loggedUserId).avatar" alt="" class="button" @click="showDropdown">
             <div id="dropdown-links" class="dropdown-content">
               <router-link :to="'/' + this.$store.getters.getUser(loggedUserId).username" class="dropdown-link" right>Mi perfil</router-link>
 
-              <router-link to="/" class="dropdown-link" right>Cerrar Sesión</router-link>
+              <button class="dropdown-link" right @click="logOut">Cerrar Sesión</button>
             </div>
           </div>
         </div>
@@ -150,22 +150,12 @@
   })();  
 
   export default {
-    data () {
-      return {
-        loggedUserId: this.$store.state.loggedUserId
-      }
-    },
     computed: {
+      loggedUserId () {
+        return this.$store.state.loggedUserId
+      },
       currentPageIsLandingPage () {
         return this.$route.path.indexOf('/') === 0
-      },
-      update () {
-        return this.postSent
-      }
-    },
-    methods: {
-      say (m) {
-        console.log(m)
       }
     },
     mounted () {
@@ -192,21 +182,28 @@
           }			
         })
       }
+
       
-      // Profile links dropdown
-      var drop = document.getElementById("nav-avatar");
-      if (drop != undefined) {
-        drop.addEventListener("click", function() {
-            document.getElementById("dropdown-links").classList.toggle("show");
-          });
+    },
+    methods: {
+      showDropdown () {
+        document.getElementById("dropdown-links").classList.toggle("show");
         // Close the dropdown menu if the user clicks outside of it
         window.onclick = function(event) {
           if (!event.target.matches('#nav-avatar')) {
-            var openDropdown = document.getElementById("dropdown-links");				
-            if (openDropdown.classList.contains('show'))
-              openDropdown.classList.remove('show');
+          let openDropdown = document.getElementById("dropdown-links");
+            if (openDropdown && openDropdown.classList.contains('show'))
+              openDropdown.classList.remove('show')
           }
         }
+      },
+      logOut () {
+        this.$store.dispatch('LogOut')
+      }
+    },
+    watch: {
+      loggedUserId () {
+        this.$router.push('/')
       }
     }
   }

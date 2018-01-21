@@ -12,6 +12,7 @@
 
 .first-row {  
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 }
@@ -106,7 +107,7 @@
 
 .website {
   align-items: center;
-  color: var(--secondary);
+  color: var(--dark);
   display: flex;
 }
 

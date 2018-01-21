@@ -36,6 +36,11 @@
   z-index: 2;
 }
 
+.form-line label[for="signupUsername"] {
+	font-size: 1.125em;
+	margin-right: -1.8em;
+}
+
 .form-line input {
 	border: 1px solid #afafaf;
 	border-radius: var(--semi-rounded-corner);
@@ -55,27 +60,17 @@
 	border-top-right-radius: var(--semi-rounded-corner);
 }
 
-label[for="username"] {
-	background: url("/static/icons/user.png") no-repeat center;
-	background-size: contain;
-}
-
-label[for="email"] {
-	background: url("/static/icons/mail.png") no-repeat center;
-	background-size: contain;
-}
-
-label[for="password"] {
-	background: url("/static/icons/lock.png") no-repeat center;
-	background-size: contain;
-}
-
 .auth.card .form-line.submit {
 	justify-content: center;
 }
 
-.auth.card .form-line.submit a {
-		padding: 10px 40px;
+label img {
+	pointer-events: none;
+	width: 1em;
+}
+
+.auth.card .form-line.submit .button {
+	padding: 10px 40px;
 }
 
 .auth.card .input-group input {
@@ -89,7 +84,7 @@ label[for="password"] {
 .show-password {
 	background: url(/static/icons/eye.png) no-repeat center;
   background-color: transparent;
-	background-size: 28px;
+	background-size: 24px;
 	border: 2px solid var(--primary);
 	cursor: pointer;
   height: 100%;
@@ -101,7 +96,7 @@ label[for="password"] {
 	background: url(/static/icons/eye-white.png) 
 	no-repeat center;		
 	background-color: var(--primary);
-	background-size: 28px;
+	background-size: 24px;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -109,6 +104,18 @@ label[for="password"] {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0
+}
+
+.fadeHeight-enter-active,
+.fadeHeight-leave-active {
+  transition: all 0.4s;
+  max-height: 400px;
+}
+.fadeHeight-enter,
+.fadeHeight-leave-to
+{
+	opacity: 0;
+	max-height: 220px;
 }
 
 @media (max-width: 767px) {	

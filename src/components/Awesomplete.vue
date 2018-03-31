@@ -28,6 +28,12 @@
             value: String,
         },
 
+        computed: {
+            newList () {
+                return this.setting.list
+            }
+        },
+
         data() {
             return {
                 awesomplete: null,
@@ -123,6 +129,9 @@
         watch: {
             internalValue() {
                 this.$emit('input', this.internalValue)
+            },
+            newList () {
+                this.list(this.setting.list)
             }
         },
 

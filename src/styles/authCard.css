@@ -94,7 +94,7 @@ label img {
 
 .show-password.show {
 	background: url(/static/icons/eye-white.png) 
-	no-repeat center;		
+	no-repeat center;
 	background-color: var(--primary);
 	background-size: 24px;
 }

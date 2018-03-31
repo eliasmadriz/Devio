@@ -23,27 +23,23 @@
             
         <div class="form-line">
           <label for="signinPassword">
-            <img src="/static/icons/lock.png" alt="">
+            <img src="/static/icons/lock.png" >
           </label>
             
           <div class="input-group line" data-toggle="buttons">
             <input :type="passwordFieldType" placeholder="Contraseña" required id="signinPassword" v-model="signinCredentials.password">
-            <span class="input-group-btn" id="toggleShowPassword">
-              <button :class="{show: show}" class="btn show-password" type="button" data-toggle="button" @click="changePasswordFieldType">
+            <span class="input-group-btn">
+              <button :class="{show: show}" class="btn show-password" type="button" data-toggle="button" @click="changePasswordFieldType" tabindex="-1">
               </button>
             </span>
           </div>
         </div>
 
         <div class="form-line submit mt-2 mb-3">
-          <button type="submit" class="filled action button" :disabled="commiting">
+          <button type="submit" class="filled action button" :disabled="committing">
             <transition name="fade" mode="out-in">
-              <span v-if="!commiting" key="button-text">Iniciar Sesión</span>
-              <div class="loading spinner" v-if="commiting" key="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-              </div>
+              <span v-if="!committing" key="button-text">Iniciar Sesión</span>
+              <loading-spinner v-if="committing" key="spinner"></loading-spinner>
             </transition>
           </button>
         </div>
@@ -89,21 +85,17 @@
           <div class="input-group line" data-toggle="buttons">
             <input :type="passwordFieldType" placeholder="Contraseña" id="signupPassword" required v-model="signupCredentials.password">
             <span class="input-group-btn">
-              <button :class="{show: show}" class="btn show-password" type="button" data-toggle="button" id="passwordButton" @click="changePasswordFieldType">
+              <button :class="{show: show}" class="btn show-password" type="button" data-toggle="button" tabindex="-1" @click="changePasswordFieldType">
               </button>
             </span>
           </div>
         </div>
       
         <div class="form-line submit mt-2 mb-3">
-          <button type="submit" class="filled action button" :disabled="commiting">
+          <button type="submit" class="filled action button" :disabled="committing">
             <transition name="fade" mode="out-in">
-              <span v-if="!commiting" key="button-text">Registrarse</span>
-              <div class="loading spinner" v-if="commiting" key="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-              </div>
+              <span v-if="!committing" key="button-text">Registrarse</span>
+              <loading-spinner v-if="committing" key="spinner"></loading-spinner>
             </transition>
           </button>
         </div>
@@ -143,7 +135,7 @@
           show: false,
           type: 'danger'
         },
-        commiting: false
+        committing: false
 			}
 		},
 		methods: {
@@ -161,27 +153,22 @@
       },
       commitSignin () {
         this.alert.show = false
-        // Validate the info provided
-        let isEmail = this.emailValidator.test(this.signinCredentials.email)
-
-        let _this = this
-        function dispatchSignin (data) {
-          _this.commiting = true
-          _this.$store.dispatch('SignIn', data)
-          .then()
-          .catch(function (error) {            
-              _this.commiting = false
-              if (error.code === 'auth/wrong-password')
-                _this.showError('Contraseña inválida')
-              else if (error.code === 'auth/user-not-found')
-                _this.showError('No existe una cuenta asociada a ese correo electrónico')
-              else if (error.code === 'auth/invalid_username')
-                _this.showError('No existe una cuenta con ese nombre de usuario')
-              else 
-                _this.showError('Parece que hubo un error')
-          })
-        }
-        dispatchSignin(this.signinCredentials)
+        this.committing = true
+        this.$store.dispatch('SignIn', {email: this.signinCredentials.email.toLowerCase(), password: this.signinCredentials.password})
+        .then()
+        .catch(function (error) {
+            this.committing = false
+            if (error.code === 'auth/wrong-password')
+              this.showError('Contraseña inválida')
+            else if (error.code === 'auth/user-not-found')
+              this.showError('No existe una cuenta asociada a ese correo electrónico')
+            else if (error.code === 'auth/invalid_username')
+              this.showError('No existe una cuenta con ese nombre de usuario')
+            else {
+              this.showError('Parece que hubo un error')
+              console.log(error)
+            }
+        })
       },
       commitSignup () {
         this.alert.show = false
@@ -217,20 +204,22 @@
         } else if (!validUsername) {
           this.showError('El nombre de usuario solo puede conteners letras, números y guines bajos (_)')
         } else {
-          this.commiting = true
+          this.committing = true
           let _this = this
           this.$store.dispatch('SignUp', this.signupCredentials)
           .then()
           .catch(function (error) {
-            _this.commiting = false
+            _this.committing = false
             if (error.code === 'auth/email-already-in-use')
               _this.showError('Ya existe una cuenta con esa dirección de correo')
             else if (error.code === 'auth/taken_username')
-              _this.showError('El nombre de usuario no está disponible, elige otro')
+              _this.showError('El nombre de usuario no está disponible')
             else if (error.code === 'auth/network-request-failed')
               _this.showError('Algo salió mal. Verifica tu conexión e intenta de nuevo')
-            else
+            else {
               _this.showError('Parece que hubo un error')
+              console.log(error)
+            }
           })
         }
       }

@@ -2,7 +2,8 @@
   <div class="page-content container">
     <div class="row">
       <div class="col-12 col-md-8 offset-md-2">
-        <post-card :post="post" :showAuthor="true"></post-card>
+        <post-card v-if="post" :post="post" :showAuthor="true"></post-card>
+        <loading-spinner v-else variant="dark"></loading-spinner>
       </div>
     </div>
   </div>
@@ -10,13 +11,10 @@
 
 <script>
   export default {
-    props: ['username', 'postId'],
+    props: ['postId'],
     computed: {
       post () {
         return this.$store.getters.getPost(this.postId)
-      },
-      user () {
-        return this.$store.getters.getUserByUsername(this.username)
       }
     }
   }

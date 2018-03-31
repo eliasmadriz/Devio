@@ -19,7 +19,7 @@
 					<!-- Navbar for logged users -->		
 					<div class="nav-items" v-if="loggedUserId !== undefined">
             <b-navbar-toggle target="nav_collapse">
-              <button class="nav-item button filled primary" right v-b-modal.EditPostModal :update="{}"><span>Publicar</span><img src="/static/icons/megaphone.png" alt="" class="text-icon"></button>
+              <button class="nav-item button filled primary" right v-b-modal.EditPostModal :update="{}"><span>Publicar</span><img src="/static/icons/megaphone.png"  class="icon post"></button>
             </b-navbar-toggle>
 
             <b-navbar-toggle target="nav_collapse">
@@ -34,8 +34,8 @@
               </router-link>
             </b-navbar-toggle> -->
             
-            <b-navbar-toggle target="nav_collapse">
-              <router-link :to="'/' + this.$store.getters.getUser(loggedUserId).username" right class="nav-item">
+            <b-navbar-toggle target="nav_collapse" v-if="loggedUser">
+              <router-link :to="'/' + loggedUser.username" right class="nav-item">
                 Mi perfil
               </router-link>
             </b-navbar-toggle>
@@ -65,7 +65,7 @@
 
             <b-navbar-toggle target="nav_collapse">
               <router-link to="/signup" right class="nav-item">
-                <div class="button filled neutral">
+                <div class="button filled dark">
                   Registrarse
                 </div>
               </router-link>
@@ -96,13 +96,13 @@
           </router-link>
 
           <router-link to="/signup" right class="nav-item">
-            <div class="button filled neutral">Registrarse</div>
+            <div class="button filled dark">Registrarse</div>
           </router-link>
         </div>
         
         <!-- Logged users -->
         <div class="nav-items" v-else>
-          <button class="nav-item button filled primary" right v-b-modal.EditPostModal><span>Publicar</span><img src="/static/icons/megaphone.png" alt="" class="text-icon"></button>
+          <button class="nav-item button filled primary" right v-b-modal.EditPostModal><span>Publicar</span><img src="/static/icons/megaphone.png"  class="icon post"></button>
          
           <router-link to="/" right class="nav-item">
             Inicio
@@ -113,9 +113,9 @@
           </router-link> -->
          
           <div class="dropdown nav-item">
-            <img id="nav-avatar" :src="this.$store.getters.getUser(loggedUserId).avatar" alt="" class="button" @click="showDropdown">
-            <div id="dropdown-links" class="dropdown-content">
-              <router-link :to="'/' + this.$store.getters.getUser(loggedUserId).username" class="dropdown-link" right>Mi perfil</router-link>
+            <img id="nav-avatar" :src="avatar" @click="showDropdown">
+            <div id="dropdown-links" class="dropdown-content" v-if="loggedUser">
+              <router-link :to="'/' + loggedUser.username" class="dropdown-link" right>Mi perfil</router-link>
 
               <button class="dropdown-link" right @click="logOut">Cerrar Sesión</button>
             </div>
@@ -154,8 +154,17 @@
       loggedUserId () {
         return this.$store.state.loggedUserId
       },
+      loggedUser () {
+        return this.$store.getters.getUser({userId: this.$store.state.loggedUserId})
+      },
       currentPageIsLandingPage () {
         return this.$route.path.indexOf('/') === 0
+      },
+      avatar () {
+        if (this.loggedUser)
+          return this.loggedUser.avatar || '/static/avatar/default.svg'
+        else
+          return ''
       }
     },
     mounted () {

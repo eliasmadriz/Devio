@@ -24,15 +24,13 @@
         <h3 class="mb-3 section-title">Tecnologías Populares</h3>
         <div class="swiper-section">
           <swiper :options="swiperOptions" ref="mySwiper" class="popular techs">
-            <swiper-slide v-for="(tech, index) in popularTechs" :key="tech.name">
+            <swiper-slide v-for="(tech) in popularTechs" :key="tech.name">
               <tech-card :info="tech"></tech-card>
             </swiper-slide>
 
             <div class="swiper-pagination"   slot="pagination"></div>
           </swiper>
         </div>
-
-        <a href="">Ver todas ></a>
       </div>
     </section>
 
@@ -49,8 +47,6 @@
             <div class="swiper-pagination"   slot="pagination"></div>
           </swiper>
         </div>
-
-        <a href="">Ver todas ></a>
       </div>
     </section>
 
@@ -67,8 +63,6 @@
             <div class="swiper-pagination"   slot="pagination"></div>
           </swiper>
         </div>
-
-        <a href="">Ver todas ></a>
       </div>
     </section>
   </div>

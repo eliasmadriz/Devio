@@ -29,19 +29,19 @@ export default new Router({
 			component: SignUp,
 			props: true
 		},
-    {
-      path: '/credits',
-      name: 'Credits',
-      component: Credits
-    },
-    {
-      path: '/:username',
-      name: 'Profile',
-      component: Profile,
-      props: true
+		{
+			path: '/credits',
+			name: 'Credits',
+			component: Credits
 		},
 		{
-			path: '/:username/:postId',
+			path: '/:username',
+			name: 'Profile',
+			component: Profile,
+			props: true
+		},
+		{
+			path: '/post/:postId',
 			name: 'SinglePost',
 			component: SinglePost,
 			props: true

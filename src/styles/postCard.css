@@ -4,7 +4,7 @@
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
-  font-size: .85em;  
+  font-size: .85em;
   padding: 0;
   text-align: left;
 }

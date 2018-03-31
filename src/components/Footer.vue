@@ -1,9 +1,9 @@
 <template>
   <footer class="container-fluid footer">
     <div class="container">
-      &copy; Devio 2017
+      &copy; Devio 2017 - 2018
       
-      <a href="/credits">Credits</a>
+      <router-link to="/credits">Créditos</router-link>
     </div>
   </footer>
 </template>

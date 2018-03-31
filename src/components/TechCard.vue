@@ -1,7 +1,7 @@
 <template>
   <div class="tech-card">
     <div class="tech-logo">
-      <img :src="info.logo" alt="" class="logo">
+      <img :src="info.logo"  class="logo">
     </div>
     <div class="tech-info">
       <h6 class="name">{{ info.name }}</h6>

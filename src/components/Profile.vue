@@ -10,12 +10,15 @@
         <h3>Publicaciones</h3>
         
         <div class="posts-wrapper">
-          <post-card v-if="posts !== 'empty'" v-for="post in posts" :post="post" :key="post.id" :showAuthor="false"></post-card>
+          <loading-spinner v-if="$store.state.posts.loading" variant="dark"></loading-spinner>
+          <post-card v-if="!posts.empty" v-for="post in posts" :post="post" :key="post.id" :showAuthor="false"></post-card>
           
-          <div class="empty-post-list" v-if="posts === 'empty'">Este usuario aún no ha publicado nada <span>:(</span></div>
+          <div class="empty-post-list" v-else>Este usuario aún no ha publicado nada <span>:(</span></div>
         </div>
       </div>
     </div>
+
+    <edit-profile-modal v-if="userIsLogged"></edit-profile-modal>
   </div>
 </template>
 
@@ -27,22 +30,29 @@
     props: ['username'],
     computed: {
       user () {
-        return this.$store.getters.getUserByUsername(this.username)
+        return this.$store.getters.getUser({username: this.username})
+      },
+      userIsLogged () {
+        if (this.user)
+        return this.user.id === this.$store.state.loggedUserId
+        else return;
       },
       posts () {
-        if (this.user.posts.list.length > 0) {
-          return this.user.posts.list.map((postId) => {
-            return this.$store.getters.getPost(postId)
-          })
-        } else {
-          return 'empty'
+        let posts = {}
+        if (this.user && !this.$store.state.posts.loading) {
+          if (!this.user.posts.list) posts.empty = true
+          else
+          for (let postId in this.user.posts.list) {
+            delete posts.empty
+            posts[postId] = this.$store.getters.getPost(postId)
+          }
         }
+        return posts
       }
     },
     methods: {
       fetchData () {
-        alert('updated!')
-        this.user = this.$store.getters.getUserByUsername(this.username)
+        this.user = this.$store.getters.getUser({username: this.username})
       }
     }
   }

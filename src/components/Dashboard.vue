@@ -3,11 +3,11 @@
     <div class="row">
       <!-- Left column -->
       <div class="user d-none d-md-block col-md-5 col-lg-4">
-        <user-card :user="this.$store.getters.getUser(loggedUserId)" :minified="true"></user-card>
+        <user-card :user="loggedUser" :minified="true"></user-card>
 
         <div class="post-shortcut">
           <h5>Comparte algo con tus seguidores</h5>
-          <div class="button filled primary" v-b-modal.EditPostModal><span>Publicar</span><img src="/static/icons/megaphone.png" alt="" class="text-icon"></div>
+          <div class="button filled primary" v-b-modal.EditPostModal><span>Publicar</span><img src="/static/icons/megaphone.png"  class="icon post"></div>
         </div>
       </div>
 
@@ -31,8 +31,9 @@
       posts () {
         return this.$store.getters.dashboardPosts
       },
-      loggedUserId () {
-        return this.$store.state.loggedUserId
+      loggedUser () {
+        let user = this.$store.getters.getUser({userId: this.$store.state.loggedUserId})
+        return user
       }
     }
   }

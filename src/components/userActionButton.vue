@@ -1,22 +1,27 @@
 <template>
   <div class="action">
+    <router-link :to="'\/' + username"
+        v-if="isLogged && $route.path === '\/'">
+      <button class="button outlined secondary">Ver Perfil</button>
+    </router-link>
+
     <button class="button outlined secondary edit-profile" 
-      @click="editProfile" 
-      v-if="isLogged">Editar</button>
+        v-else-if="isLogged && $route.path !== '\/'"
+        v-b-modal.EditProfileModal><span>Editar</span><img src="/static/icons/edit.svg" class="icon post"></button>
 
     <button class="button primary follow" 
-      @click="toggleFollow" 
-      @mouseover="showUnfollowButton" 
-      @mouseleave="hideUnfollowButton" 
-      :class="{filled: following, outlined: !following, unfollow: unfollow}" 
-      v-else
-      unselectable="on">{{ actionButtonMessage }}</button>
+        @click="toggleFollow" 
+        @mouseover="showUnfollowButton" 
+        @mouseleave="hideUnfollowButton" 
+        :class="{filled: following, outlined: !following, unfollow: unfollow}" 
+        v-else
+        unselectable="on">{{ actionButtonMessage }}</button>
   </div>
 </template>
 
 <script>
   export default {
-    props: ['id'],
+    props: ['id', 'username'],
     computed: {
       actionButtonMessage () {
         return this.following ? 'Siguiendo' : 'Seguir'
@@ -48,9 +53,6 @@
         //   this.actionButtonMessage = this.following ? 'Siguiendo' : 'Seguir'
         //   this.unfollow = false;
         // }
-      },
-      editProfile () {
-        alert('edit profile here')
       }
     }
   }

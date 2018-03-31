@@ -1,13 +1,16 @@
 .user-card {
-  align-items: flex-start;
   background-color: var(--neutral);
   border-radius: var(--semi-rounded-corner);
   box-shadow: var(--card-shadow);
-  display: flex;
-  flex-direction: column;    
   font-size: .85em;
-  padding: .5rem;
-  text-align: left;  
+  padding: .75rem .5rem;
+  text-align: left;
+}
+
+.user-data {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
 }
 
 .first-row {  

@@ -125,7 +125,7 @@ button.nav-item {
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
-	margin-left: -3.5em;
+	margin-left: -3em;
   z-index: 999;
 }
 
@@ -138,8 +138,8 @@ button.nav-item {
 .search-button div {
 	background: url(/static/icons/magnifying-glass.png) no-repeat center;
 	background-size: contain;
-	height: 16px;
-	width: 16px;
+	height: 12px;
+	width: 12px;
 }
 
 /* Profile links dropdown */
